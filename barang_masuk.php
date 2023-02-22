@@ -307,22 +307,6 @@ require 'check.php';
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="kategoriBarang">Kategori Barang</label>
-                                            <select class="form-control" name="kategoriBarang" id="kategoriBarang"
-                                                required>
-                                                <?php
-                                                $dataNamaBarang = mysqli_query($conn, "SELECT * FROM data_stock");
-                                                while ($fetchArray = mysqli_fetch_array($dataNamaBarang)) {
-                                                    $idBarang = $fetchArray['id_barang'];
-                                                    $namaBarang = $fetchArray['nama_barang'];
-                                                    $kategoriBarang = $fetchArray['kategori_barang'];
-                                                }
-                                                ?>
-                                                <option value="<?= $idBarang; ?>"><?= $kategoriBarang; ?></option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
                                             <label for="jumlahBarang">Jumlah Barang</label>
                                             <input type="number" name="jumlahBarang" id="jumlahBarang"
                                                 placeholder="Jumlah" class="form-control" required>
@@ -357,8 +341,8 @@ require 'check.php';
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
+                                            <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>ID Barang</th>
                                             <th>Nama Barang</th>
                                             <th>Kategori</th>
                                             <th>Jumlah</th>
@@ -366,6 +350,44 @@ require 'check.php';
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <?php
+                                        $dataStock = mysqli_query($conn, "SELECT * FROM data_barang_masuk masuk, data_stock stock WHERE stock.id_barang = masuk.id_barang");
+                                        while ($data = mysqli_fetch_array($dataStock)) {
+                                            $i = 1;
+                                            $tanggal = $data['tanggal'];
+                                            $namaBarang = $data['nama_barang'];
+                                            $kategoriBarang = $data['kategori_barang'];
+                                            $jumlahBarang = $data['jumlah_barang'];
+                                            $hargaBarang = $data['harga_barang'];
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $i++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $tanggal; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $namaBarang; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $kategoriBarang; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $jumlahBarang; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $hargaBarang; ?>
+                                                </td>
+                                            </tr>
+
+                                            <?php
+
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
                                 </table>
                             </div>
                         </div>

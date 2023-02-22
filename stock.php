@@ -345,8 +345,8 @@ require 'check.php';
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
+                                            <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>ID Barang</th>
                                             <th>Nama Barang</th>
                                             <th>Kategori</th>
                                             <th>Jumlah</th>
@@ -354,6 +354,43 @@ require 'check.php';
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <?php
+                                        $dataStock = mysqli_query($conn, "SELECT * FROM data_stock");
+                                        while ($data = mysqli_fetch_array($dataStock)) {
+                                            $i = 1;
+                                            $tanggal = $data['tanggal'];
+                                            $namaBarang = $data['nama_barang'];
+                                            $kategoriBarang = $data['kategori_barang'];
+                                            $jumlahBarang = $data['jumlah_barang'];
+                                            $statusBarang = $data['status_barang'];
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $i++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $tanggal; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $namaBarang; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $kategoriBarang; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $jumlahBarang; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $statusBarang; ?>
+                                                </td>
+                                            </tr>
+
+                                            <?php
+
+                                        }
+                                        ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

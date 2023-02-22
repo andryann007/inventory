@@ -329,14 +329,45 @@ require 'check.php';
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
+                                            <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>ID Supplier</th>
                                             <th>Nama Supplier</th>
                                             <th>Alamat</th>
                                             <th>No. Telp</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <?php
+                                        $dataStock = mysqli_query($conn, "SELECT * FROM data_supplier");
+                                        while ($data = mysqli_fetch_array($dataStock)) {
+                                            $i = 1;
+                                            $tanggal = $data['tanggal'];
+                                            $namaSupplier = $data['nama_supplier'];
+                                            $alamatSupplier = $data['alamat_supplier'];
+                                            $telpSupplier = $data['telp_supplier'];
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $i++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $tanggal; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $namaSupplier; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $alamatSupplier; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $telpSupplier; ?>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

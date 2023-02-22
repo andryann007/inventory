@@ -337,8 +337,8 @@ require 'check.php';
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
+                                            <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>ID User</th>
                                             <th>Nama</th>
                                             <th>Email</th>
                                             <th>Password</th>
@@ -346,6 +346,43 @@ require 'check.php';
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <?php
+                                        $dataStock = mysqli_query($conn, "SELECT * FROM data_user");
+                                        while ($data = mysqli_fetch_array($dataStock)) {
+                                            $i = 1;
+                                            $tanggal = $data['tanggal'];
+                                            $username = $data['username'];
+                                            $email = $data['email'];
+                                            $password = $data['password'];
+                                            $tipeAkun = $data['account_type'];
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $i++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $tanggal; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $username; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $email; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $password; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $tipeAkun; ?>
+                                                </td>
+                                            </tr>
+
+                                            <?php
+
+                                        }
+                                        ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
