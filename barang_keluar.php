@@ -264,72 +264,11 @@ require 'check.php';
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h2 class="h3 mb-0 text-gray-800">Data Barang Keluar</h2>
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                            data-target="#addAccountModal">
+                            data-target="#addOutcomingModal">
                             <i class="fas fa-plus"></i>
                             Tambah Data Barang Keluar
                         </button>
                     </div>
-
-                    <div class="modal fade" id="addAccountModal" tabindex="-1" aria-labelledby="addModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="addModalLabel">Tambah Data</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <form method="post">
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="inputTanggal">Tanggal</label>
-                                            <input type="date" name="tglOutcoming" id="tanggalBarangKeluar"
-                                                placeholder="Tanggal" class="form-control" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="namaBarang">Nama Barang</label>
-                                            <select class="form-control" name="namaBarang" id="namaBarang" required>
-                                                <?php
-                                                $dataNamaBarang = mysqli_query($conn, "SELECT * FROM data_stock");
-                                                while ($fetchArray = mysqli_fetch_array($dataNamaBarang)) {
-                                                    $idBarang = $fetchArray['id_barang'];
-                                                    $namaBarang = $fetchArray['nama_barang'];
-                                                    ?>
-
-                                                    <option value="<?= $idBarang; ?>"><?= $namaBarang; ?></option>
-
-                                                    <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="jumlahBarang">Jumlah Barang</label>
-                                            <input type="number" name="jumlahBarang" id="jumlahBarang"
-                                                placeholder="Jumlah" class="form-control" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="totalHarga">Total Harga Barang</label>
-                                            <input type="number" name="totalHarga" id="totalHargaBarang"
-                                                placeholder="Total Harga" class="form-control" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-sm-flex modal-footer justify-content-between mb-4">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">
-                                            <i class="fas fa-trash"></i> Batal</button>
-                                        <button type="submit" class="btn btn-primary" name="addOutcomingGoods">
-                                            <i class="fas fa-plus"></i> Tambah</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -347,7 +286,7 @@ require 'check.php';
                                             <th>Kategori</th>
                                             <th>Jumlah</th>
                                             <th>Total Harga</th>
-                                            <th>Aksi</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -379,6 +318,16 @@ require 'check.php';
                                                 </td>
                                                 <td>
                                                     <?= $hargaBarang; ?>
+                                                </td>
+                                                <td class="d-sm-flex justify-content-around align-items-center">
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                        data-target="#editModal">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                        data-target="deleteModal">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </button>
                                                 </td>
                                             </tr>
 
@@ -461,5 +410,124 @@ require 'check.php';
     <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
+
+<!-- Add Data Modal -->
+<div class="modal fade" id="addOutcomingModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Tambah Data Barang Keluar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputTanggal">Tanggal</label>
+                        <input type="date" name="tglOutcoming" id="tanggalBarangKeluar" placeholder="Tanggal"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namaBarang">Nama Barang</label>
+                        <select class="form-control" name="namaBarang" id="namaBarang" required>
+                            <?php
+                            $dataNamaBarang = mysqli_query($conn, "SELECT * FROM data_stock");
+                            while ($fetchArray = mysqli_fetch_array($dataNamaBarang)) {
+                                $idBarang = $fetchArray['id_barang'];
+                                $namaBarang = $fetchArray['nama_barang'];
+                                ?>
+
+                                <option value="<?= $idBarang; ?>"><?= $namaBarang; ?></option>
+
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jumlahBarang">Jumlah Barang</label>
+                        <input type="number" name="jumlahBarang" id="jumlahBarang" placeholder="Jumlah"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="totalHarga">Total Harga Barang</label>
+                        <input type="number" name="totalHarga" id="totalHargaBarang" placeholder="Total Harga"
+                            class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="d-sm-flex modal-footer justify-content-between mb-4">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-trash"></i> Batal</button>
+                    <button type="submit" class="btn btn-primary" name="addOutcomingGoods">
+                        <i class="fas fa-plus"></i> Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Edit Data Barang Keluar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputTanggal">Tanggal</label>
+                        <input type="date" name="tglOutcoming" id="tanggalBarangKeluar" placeholder="Tanggal"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namaBarang">Nama Barang</label>
+                        <select class="form-control" name="namaBarang" id="namaBarang" required>
+                            <?php
+                            $dataNamaBarang = mysqli_query($conn, "SELECT * FROM data_stock");
+                            while ($fetchArray = mysqli_fetch_array($dataNamaBarang)) {
+                                $idBarang = $fetchArray['id_barang'];
+                                $namaBarang = $fetchArray['nama_barang'];
+                                ?>
+
+                                <option value="<?= $idBarang; ?>"><?= $namaBarang; ?></option>
+
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jumlahBarang">Jumlah Barang</label>
+                        <input type="number" name="jumlahBarang" id="jumlahBarang" placeholder="Jumlah"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="totalHarga">Total Harga Barang</label>
+                        <input type="number" name="totalHarga" id="totalHargaBarang" placeholder="Total Harga"
+                            class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="d-sm-flex modal-footer justify-content-between mb-4">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-trash"></i> Batal</button>
+                    <button type="submit" class="btn btn-primary" name="addOutcomingGoods">
+                        <i class="fas fa-plus"></i> Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 </html>

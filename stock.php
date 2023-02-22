@@ -264,76 +264,11 @@ require 'check.php';
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h2 class="h3 mb-0 text-gray-800">Data Stock</h2>
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                            data-target="#addAccountModal">
+                            data-target="#addStockModal">
                             <i class="fas fa-plus"></i>
                             Tambah Data Stock Barang
                         </button>
                     </div>
-
-                    <div class="modal fade" id="addAccountModal" tabindex="-1" aria-labelledby="addModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="addModalLabel">Tambah Data Stock Barang</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <form method="post">
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="inputTanggal">Tanggal</label>
-                                            <input type="date" name="tglStock" id="tanggalStock" placeholder="Tanggal"
-                                                class="form-control" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="inputNamaBarang">Nama Barang</label>
-                                            <input type="text" name="namaBarang" id="namaBarang" placeholder="Nama"
-                                                class="form-control" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="kategoriBarang">Kategori Barang</label>
-                                            <select class="form-control" name="kategoriBarang" id="kategoriBarang">
-                                                <option>Sembako</option>
-                                                <option>Makanan Ringan</option>
-                                                <option>Minuman</option>
-                                                <option>Perlengkapan Mandi & Mencuci</option>
-                                                <option>Perlengkapan Rumah Tangga</option>
-                                                <option>Obat - Obatan</option>
-                                                <option>Bumbu Dapur</option>
-                                                <option>Makanan Instan</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="jumlahBarang">Jumlah Barang</label>
-                                            <input type="number" name="jumlahBarang" id="jumlahBarang"
-                                                placeholder="Jumlah" class="form-control" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="statusBarang">Status Barang</label>
-                                            <select class="form-control" name="statusBarang" id="statusBarang" required>
-                                                <option>Tersedia</option>
-                                                <option>Habis</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-sm-flex modal-footer justify-content-between mb-4">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">
-                                            <i class="fas fa-trash"></i> Batal</button>
-                                        <button type="submit" class="btn btn-primary" name="addNewStock">
-                                            <i class="fas fa-plus"></i> Tambah</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -351,7 +286,7 @@ require 'check.php';
                                             <th>Kategori</th>
                                             <th>Jumlah</th>
                                             <th>Status</th>
-                                            <th>Aksi</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -383,6 +318,17 @@ require 'check.php';
                                                 </td>
                                                 <td>
                                                     <?= $statusBarang; ?>
+                                                </td>
+
+                                                <td class="d-sm-flex justify-content-around align-items-center">
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                        data-target="#editModal">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                        data-target="deleteModal">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </button>
                                                 </td>
                                             </tr>
 
@@ -465,5 +411,133 @@ require 'check.php';
     <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
+
+<!-- Add Data Modal -->
+<div class="modal fade" id="addStockModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Tambah Data Stock Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputTanggal">Tanggal</label>
+                        <input type="date" name="tglStock" id="tanggalStock" placeholder="Tanggal" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputNamaBarang">Nama Barang</label>
+                        <input type="text" name="namaBarang" id="namaBarang" placeholder="Nama" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kategoriBarang">Kategori Barang</label>
+                        <select class="form-control" name="kategoriBarang" id="kategoriBarang">
+                            <option>Sembako</option>
+                            <option>Makanan Ringan</option>
+                            <option>Minuman</option>
+                            <option>Perlengkapan Mandi & Mencuci</option>
+                            <option>Perlengkapan Rumah Tangga</option>
+                            <option>Obat - Obatan</option>
+                            <option>Bumbu Dapur</option>
+                            <option>Makanan Instan</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jumlahBarang">Jumlah Barang</label>
+                        <input type="number" name="jumlahBarang" id="jumlahBarang" placeholder="Jumlah"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="statusBarang">Status Barang</label>
+                        <select class="form-control" name="statusBarang" id="statusBarang" required>
+                            <option>Tersedia</option>
+                            <option>Habis</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-sm-flex modal-footer justify-content-between mb-4">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-trash"></i> Batal</button>
+                    <button type="submit" class="btn btn-primary" name="addNewStock">
+                        <i class="fas fa-plus"></i> Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Data Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Edit Data Stock Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputTanggal">Tanggal</label>
+                        <input type="date" name="tglStock" id="tanggalStock" placeholder="Tanggal" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputNamaBarang">Nama Barang</label>
+                        <input type="text" name="namaBarang" id="namaBarang" placeholder="Nama" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kategoriBarang">Kategori Barang</label>
+                        <select class="form-control" name="kategoriBarang" id="kategoriBarang">
+                            <option>Sembako</option>
+                            <option>Makanan Ringan</option>
+                            <option>Minuman</option>
+                            <option>Perlengkapan Mandi & Mencuci</option>
+                            <option>Perlengkapan Rumah Tangga</option>
+                            <option>Obat - Obatan</option>
+                            <option>Bumbu Dapur</option>
+                            <option>Makanan Instan</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jumlahBarang">Jumlah Barang</label>
+                        <input type="number" name="jumlahBarang" id="jumlahBarang" placeholder="Jumlah"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="statusBarang">Status Barang</label>
+                        <select class="form-control" name="statusBarang" id="statusBarang" required>
+                            <option>Tersedia</option>
+                            <option>Habis</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-sm-flex modal-footer justify-content-between mb-4">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-trash"></i> Batal</button>
+                    <button type="submit" class="btn btn-primary" name="addNewStock">
+                        <i class="fas fa-plus"></i> Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 </html>
