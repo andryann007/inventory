@@ -353,8 +353,8 @@ require 'check.php';
                                     <tbody>
                                         <?php
                                         $dataStock = mysqli_query($conn, "SELECT * FROM data_barang_keluar keluar, data_stock stock WHERE stock.id_barang = keluar.id_barang");
+                                        $i = 1;
                                         while ($data = mysqli_fetch_array($dataStock)) {
-                                            $i = 1;
                                             $tanggal = $data['tanggal'];
                                             $namaBarang = $data['nama_barang'];
                                             $kategoriBarang = $data['kategori_barang'];

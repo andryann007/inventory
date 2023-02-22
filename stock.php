@@ -357,8 +357,8 @@ require 'check.php';
                                     <tbody>
                                         <?php
                                         $dataStock = mysqli_query($conn, "SELECT * FROM data_stock");
+                                        $i = 1;
                                         while ($data = mysqli_fetch_array($dataStock)) {
-                                            $i = 1;
                                             $tanggal = $data['tanggal'];
                                             $namaBarang = $data['nama_barang'];
                                             $kategoriBarang = $data['kategori_barang'];

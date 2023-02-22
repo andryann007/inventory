@@ -349,8 +349,8 @@ require 'check.php';
                                     <tbody>
                                         <?php
                                         $dataStock = mysqli_query($conn, "SELECT * FROM data_user");
+                                        $i = 1;
                                         while ($data = mysqli_fetch_array($dataStock)) {
-                                            $i = 1;
                                             $tanggal = $data['tanggal'];
                                             $username = $data['username'];
                                             $email = $data['email'];

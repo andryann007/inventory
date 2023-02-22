@@ -340,8 +340,8 @@ require 'check.php';
                                     <tbody>
                                         <?php
                                         $dataStock = mysqli_query($conn, "SELECT * FROM data_supplier");
+                                        $i = 1;
                                         while ($data = mysqli_fetch_array($dataStock)) {
-                                            $i = 1;
                                             $tanggal = $data['tanggal'];
                                             $namaSupplier = $data['nama_supplier'];
                                             $alamatSupplier = $data['alamat_supplier'];
