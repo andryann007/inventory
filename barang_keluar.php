@@ -51,7 +51,7 @@ require 'check.php';
             </a>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span></a>
@@ -60,9 +60,9 @@ require 'check.php';
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
+            <!-- Heading Data Master -->
             <div class="sidebar-heading">
-                Data Penting
+                Data Master
             </div>
 
             <!-- Nav Item - Data Akun -->
@@ -79,31 +79,49 @@ require 'check.php';
                     <span>Data Supplier</span></a>
             </li>
 
-            <!-- Nav Item - Data Barang -->
+            <!-- Nav Item - Data Stock -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cube"></i>
-                    <span>Data Barang</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Data Data Barang</h6>
-                        <a class="collapse-item" href="barang_masuk.php">Data Barang Masuk</a>
-                        <a class="collapse-item" href="barang_keluar.php">Data Barang Keluar</a>
-                        <a class="collapse-item" href="stock.php">Data Stock Barang</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="stock.php">
+                    <i class="fas fa-cubes"></i>
+                    <span>Data Stock Barang</span></a>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Data Master -->
+            <div class="sidebar-heading">
+                Data Transaksi
+            </div>
+
+            <!-- Nav Item - Data Akun -->
+            <li class="nav-item">
+                <a class="nav-link" href="barang_masuk.php">
+                    <i class="fas fa-cube"></i>
+                    <span>Data Barang Masuk</span></a>
+            </li>
+
+            <!-- Nav Item - Data Supplier -->
+            <li class="nav-item active">
+                <a class="nav-link" href="barang_keluar.php">
+                    <i class="fas fa-cube"></i>
+                    <span>Data Barang Keluar</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Rekap Laporan
+                Laporan
             </div>
+
+            <!-- Nav Item - Laporan Stok Barang -->
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Laporan Stock Inventory</span></a>
+            </li>
 
             <!-- Nav Item - Laporan Barang Masuk -->
             <li class="nav-item">
@@ -119,15 +137,23 @@ require 'check.php';
                     <span>Laporan Barang Keluar</span></a>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Logout
+            </div>
+
             <!-- Nav Item - Laporan Stok Barang -->
             <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-file-invoice"></i>
-                    <span>Laporan Stock Inventory</span></a>
+                <a class="nav-link" href="logout.php">
+                    <i class="fas fa-power-off"></i>
+                    <span>Logout</span></a>
             </li>
+
         </ul>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
