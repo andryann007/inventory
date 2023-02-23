@@ -311,16 +311,16 @@ require 'check.php';
                                             <th>Tanggal</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>Password</th>
                                             <th>Tipe Akun</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $dataStock = mysqli_query($conn, "SELECT * FROM data_user");
+                                        $dataUser = mysqli_query($conn, "SELECT * FROM data_user");
                                         $i = 1;
-                                        while ($data = mysqli_fetch_array($dataStock)) {
+                                        while ($data = mysqli_fetch_array($dataUser)) {
+                                            $idUser = $data['id_user'];
                                             $tanggal = $data['tanggal'];
                                             $username = $data['username'];
                                             $email = $data['email'];
@@ -341,22 +341,112 @@ require 'check.php';
                                                     <?= $email; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $password; ?>
-                                                </td>
-                                                <td>
                                                     <?= $tipeAkun; ?>
                                                 </td>
                                                 <td class="d-sm-flex justify-content-around align-items-center">
                                                     <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                        data-target="#editModal">
+                                                        data-target="#editAccountModal<?= $idUser; ?>">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </button>
+                                                    <input type="hidden" name="idHapus" value="<?= $idUser; ?>">
                                                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                        data-target="deleteModal">
+                                                        data-target="#deleteAccountModal<?= $idUser; ?>">
                                                         <i class="fas fa-trash"></i> Delete
                                                     </button>
                                                 </td>
                                             </tr>
+
+                                            <!-- Edit Data Modal -->
+                                            <div class="modal fade" tabindex="-1" aria-labelledby="editModalLabel"
+                                                aria-hidden="true" id="editAccountModal<?= $idUser; ?>">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="editModalLabel">Edit Data Akun</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="post">
+                                                            <div class="modal-body">
+                                                                <input type="hidden" name="idUser" value="<?= $idUser; ?>">
+
+                                                                <div class="form-group">
+                                                                    <label for="namaUser">Nama User</label>
+                                                                    <input type="text" name="namaUser" id="namaUser"
+                                                                        value="<?= $username; ?>" class="form-control"
+                                                                        required>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="emailUser">Email</label>
+                                                                    <input type="email" name="emailUser" id="emailUser"
+                                                                        value="<?= $email; ?>" class="form-control"
+                                                                        required>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="passwordUser">Password</label>
+                                                                    <input type="password" name="passwordUser"
+                                                                        id="passwordUser" value="<?= $password; ?>"
+                                                                        class="form-control" required>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="tipeAkun">Tipe Akun</label>
+                                                                    <select class="form-control" name="tipeAkun"
+                                                                        id="tipeAkun" value="<?= $tipeAkun; ?>" required>
+                                                                        <option>Super Admin</option>
+                                                                        <option>Admin</option>
+                                                                        <option>User</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="d-sm-flex modal-footer mb-4">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">
+                                                                    <i class="fas fa-trash"></i> Batal</button>
+                                                                <button type=" submit" class="btn btn-warning"
+                                                                    name="editAccount">
+                                                                    <i class="fas fa-edit"></i> Edit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Delete Data Modal -->
+                                            <div class="modal fade" tabindex="-1" aria-labelledby="deleteModalLabel"
+                                                aria-hidden="true" id="deleteAccountModal<?= $idUser; ?>">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel">Hapus Akun ?
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="post">
+                                                            <div class="modal-body text-center">
+                                                                Apakah anda yakin ingin menghapus akun <b>
+                                                                    <?= $username ?>
+                                                                </b> ?
+                                                            </div>
+                                                            <input type="hidden" name="idHapus" value="<?= $idUser; ?>">
+
+                                                            <div class="d-sm-flex modal-footer mb-4">
+                                                                <button type=" submit" class="btn btn-danger"
+                                                                    name="deleteAccount">
+                                                                    <i class="fas fa-trash"></i> Hapus</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <?php
 
@@ -489,65 +579,6 @@ require 'check.php';
                         <i class="fas fa-trash"></i> Batal</button>
                     <button type="submit" class="btn btn-primary" name="addNewAccount">
                         <i class="fas fa-plus"></i> Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Edit Data Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit Data Akun</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="tanggalAkun">Tanggal</label>
-                        <input type="date" name="tglAkun" id="tanggalAkun" placeholder="Tanggal" class="form-control"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="namaUser">Nama User</label>
-                        <input type="text" name="namaUser" id="namaUser" placeholder="Nama" class="form-control"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="emailUser">Email</label>
-                        <input type="email" name="emailUser" id="emailUser" placeholder="Email" class="form-control"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="passwordUser">Password</label>
-                        <input type="password" name="passwordUser" id="passwordUser" placeholder="Password"
-                            class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tipeAkun">Tipe Akun</label>
-                        <select class="form-control" name="tipeAkun" id="tipeAkun" required>
-                            <option>Super Admin</option>
-                            <option>Admin</option>
-                            <option>User</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="d-sm-flex modal-footer justify-content-between mb-4">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        <i class="fas fa-trash"></i> Batal</button>
-                    <button type="submit" class="btn btn-primary" name="editAccount">
-                        <i class="fas fa-plus"></i> Edit</button>
                 </div>
             </form>
         </div>

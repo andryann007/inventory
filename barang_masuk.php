@@ -321,6 +321,8 @@ require 'check.php';
                                         $dataStock = mysqli_query($conn, "SELECT * FROM data_barang_masuk masuk, data_stock stock WHERE stock.id_barang = masuk.id_barang");
                                         $i = 1;
                                         while ($data = mysqli_fetch_array($dataStock)) {
+                                            $idMasuk = $data['id_masuk'];
+                                            $idBarang = $data['id_barang'];
                                             $tanggal = $data['tanggal'];
                                             $namaBarang = $data['nama_barang'];
                                             $kategoriBarang = $data['kategori_barang'];
@@ -348,15 +350,115 @@ require 'check.php';
                                                 </td>
                                                 <td class="d-sm-flex justify-content-around align-items-center">
                                                     <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                        data-target="#editModal">
+                                                        data-target="#editIncomingModal<?= $idMasuk ?>">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </button>
+                                                    <input type="hidden" name="idHapus" value="<?= $idMasuk; ?>">
                                                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                        data-target="deleteModal">
+                                                        data-target="#deleteIncomingModal<?= $idMasuk ?>">
                                                         <i class="fas fa-trash"></i> Delete
                                                     </button>
                                                 </td>
                                             </tr>
+
+                                            <!-- Edit Data Modal -->
+                                            <div class="modal fade" id="editIncomingModal<?= $idMasuk ?>" tabindex="-1"
+                                                aria-labelledby="editModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="editModalLabel">Edit Data Barang
+                                                                Masuk</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="post">
+                                                            <div class="modal-body">
+                                                                <input type="hidden" name="idIncoming"
+                                                                    value="<?= $idMasuk; ?>">
+
+                                                                <input type="hidden" name="jumlahBarangLama"
+                                                                    value="<?= $jumlahBarang; ?>">
+                                                                <div class="form-group">
+                                                                    <label for="tanggalIncoming">Tanggal</label>
+                                                                    <input type="date" name="tglIncoming"
+                                                                        id="tanggalIncoming" value="<?= $tanggal; ?>"
+                                                                        class="form-control" required>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="namaBarang">Nama Barang</label>
+                                                                    <input type="text" name="namaBarang" id="namaBarang"
+                                                                        value="<?= $namaBarang; ?>" class="form-control"
+                                                                        required>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="jumlahBarang">Jumlah Barang</label>
+                                                                    <input type="number" min="0" name="jumlahBarang"
+                                                                        id="jumlahBarang"
+                                                                        placeholder="<?= $jumlahBarang; ?>"
+                                                                        value="<?= $jumlahBarang; ?>" class="form-control"
+                                                                        required>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="totalHarga">Total Harga Barang</label>
+                                                                    <input type="number" min="0" name="totalHarga"
+                                                                        id="totalHargaBarang"
+                                                                        placeholder="<?= $hargaBarang ?>"
+                                                                        value="<?= $hargaBarang; ?>" class="form-control"
+                                                                        required>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="d-sm-flex modal-footer mb-4">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">
+                                                                    <i class="fas fa-trash"></i> Batal</button>
+                                                                <button type="submit" class="btn btn-warning"
+                                                                    name="editIncomingGoods">
+                                                                    <i class="fas fa-edit"></i> Edit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Delete Data Modal -->
+                                            <div class="modal fade" tabindex="-1" aria-labelledby="deleteModalLabel"
+                                                aria-hidden="true" id="deleteIncomingModal<?= $idMasuk; ?>">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel">Hapus Barang Masuk
+                                                                ?
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="post">
+                                                            <div class="modal-body text-center">
+                                                                Apakah anda yakin ingin menghapus <b>
+                                                                    <?= $namaBarang ?>
+                                                                </b> ?
+                                                            </div>
+                                                            <input type="hidden" name="idBarang" value="<?= $idBarang; ?>">
+                                                            <input type="hidden" name="idHapus" value="<?= $idMasuk; ?>">
+
+                                                            <div class="d-sm-flex modal-footer mb-4">
+                                                                <button type=" submit" class="btn btn-danger"
+                                                                    name="deleteIncoming">
+                                                                    <i class="fas fa-trash"></i> Hapus</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <?php
 
@@ -477,13 +579,13 @@ require 'check.php';
 
                     <div class="form-group">
                         <label for="jumlahBarang">Jumlah Barang</label>
-                        <input type="number" name="jumlahBarang" id="jumlahBarang" placeholder="Jumlah"
+                        <input type="number" min="0" name="jumlahBarang" id="jumlahBarang" placeholder="Jumlah"
                             class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="totalHarga">Total Harga Barang</label>
-                        <input type="number" name="totalHarga" id="totalHargaBarang" placeholder="Total Harga"
+                        <input type="number" min="0" name="totalHarga" id="totalHargaBarang" placeholder="Total Harga"
                             class="form-control" required>
                     </div>
                 </div>
@@ -500,7 +602,7 @@ require 'check.php';
 </div>
 
 <!-- Edit Data Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="editOutcomingModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">

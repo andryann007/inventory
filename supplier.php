@@ -320,6 +320,7 @@ require 'check.php';
                                         $dataStock = mysqli_query($conn, "SELECT * FROM data_supplier");
                                         $i = 1;
                                         while ($data = mysqli_fetch_array($dataStock)) {
+                                            $idSupplier = $data['id_supplier'];
                                             $tanggal = $data['tanggal'];
                                             $namaSupplier = $data['nama_supplier'];
                                             $alamatSupplier = $data['alamat_supplier'];
@@ -343,15 +344,112 @@ require 'check.php';
                                                 </td>
                                                 <td class="d-sm-flex justify-content-around align-items-center">
                                                     <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                        data-target="#editModal">
+                                                        data-target="#editSupplierModal<?= $idSupplier ?>">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </button>
+                                                    <input type="hidden" name="idHapus" value="<?= $idSupplier; ?>">
                                                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                        data-target="deleteModal">
+                                                        data-target="#deleteSupplierModal<?= $idSupplier ?>">
                                                         <i class="fas fa-trash"></i> Delete
                                                     </button>
                                                 </td>
                                             </tr>
+
+                                            <!-- Edit Data Modal -->
+                                            <div class="modal fade" id="editSupplierModal<?= $idSupplier ?>" tabindex="-1"
+                                                aria-labelledby="addModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="addModalLabel">Edit Data Supplier
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="post">
+                                                            <div class="modal-body">
+                                                                <input type="hidden" name="idSupplier"
+                                                                    value="<?= $idSupplier; ?>">
+                                                                <div class="form-group">
+                                                                    <label for="inputTanggal">Tanggal</label>
+                                                                    <input type="date" name="tglSupplier"
+                                                                        id="tanggalSupplier" value="<?= $tanggal; ?>"
+                                                                        class="form-control" required>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="inputNamaSupplier">Nama Supplier</label>
+                                                                    <input type="text" name="namaSupplier" id="namaSupplier"
+                                                                        value="<?= $namaSupplier; ?>" class="form-control"
+                                                                        required>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="inputAlamatSupplier">Alamat Supplier</label>
+                                                                    <input type="text" name="alamatSupplier"
+                                                                        id="alamatSupplier" value="<?= $alamatSupplier; ?>"
+                                                                        class="form-control" required>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="inputNoTelpSupplier">No Telepon
+                                                                        Supplier</label>
+                                                                    <input type="number" name="telpSupplier"
+                                                                        id="telpSupplier"
+                                                                        placeholder="<?= $telpSupplier; ?>"
+                                                                        value="<?= $telpSupplier; ?>" class="form-control"
+                                                                        required>
+                                                                </div>
+                                                            </div>
+
+                                                            <div
+                                                                class="d-sm-flex modal-footer justify-content-between mb-4">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">
+                                                                    <i class="fas fa-trash"></i> Batal</button>
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    name="editSupplier">
+                                                                    <i class="fas fa-plus"></i> Tambah</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Delete Data Modal -->
+                                            <div class="modal fade" tabindex="-1" aria-labelledby="deleteModalLabel"
+                                                aria-hidden="true" id="deleteSupplierModal<?= $idSupplier; ?>">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel">Hapus Supplier
+                                                                ?
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="post">
+                                                            <div class="modal-body text-center">
+                                                                Apakah anda yakin ingin menghapus supplier <b>
+                                                                    <?= $namaSupplier ?>
+                                                                </b> ?
+                                                            </div>
+                                                            <input type="hidden" name="idHapus" value="<?= $idSupplier; ?>">
+
+                                                            <div class="d-sm-flex modal-footer mb-4">
+                                                                <button type=" submit" class="btn btn-danger"
+                                                                    name="deleteSupplier">
+                                                                    <i class="fas fa-trash"></i> Hapus</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <?php
                                         }
                                         ?>
@@ -462,65 +560,17 @@ require 'check.php';
                     </div>
 
                     <div class="form-group">
-                        <label for="inputNoTelpSupplier">No Telepon Supplier</label>
-                        <input type="number" name="telpSupplier" id="telpSupplier" placeholder="No Telpon"
-                            class="form-control" required>
+                        <label for="telpSupplier">No. Telp Supplier</label>
+                        <input type="telp" name="telpSupplier" id="telpSupplier" class="form-control" required>
                     </div>
+
                 </div>
 
-                <div class="d-sm-flex modal-footer justify-content-between mb-4">
+                <div class="d-sm-flex modal-footer mb-4">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
                         <i class="fas fa-trash"></i> Batal</button>
-                    <button type="submit" class="btn btn-primary" name="addNewSupplier">
-                        <i class="fas fa-plus"></i> Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Edit Data Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">Edit Data Supplier</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="inputTanggal">Tanggal</label>
-                        <input type="date" name="tglSupplier" id="tanggalSupplier" placeholder="Tanggal"
-                            class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputNamaSupplier">Nama Supplier</label>
-                        <input type="text" name="namaSupplier" id="namaSupplier" placeholder="Nama" class="form-control"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputAlamatSupplier">Alamat Supplier</label>
-                        <input type="text" name="alamatSupplier" id="alamatSupplier" placeholder="Alamat"
-                            class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputNoTelpSupplier">No Telepon Supplier</label>
-                        <input type="number" name="telpSupplier" id="telpSupplier" placeholder="No Telpon"
-                            class="form-control" required>
-                    </div>
-                </div>
-
-                <div class="d-sm-flex modal-footer justify-content-between mb-4">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        <i class="fas fa-trash"></i> Batal</button>
-                    <button type="submit" class="btn btn-primary" name="addNewSupplier">
-                        <i class="fas fa-plus"></i> Tambah</button>
+                    <button type="submit" class="btn btn-warning" name="addNewSupplier">
+                        <i class="fas fa-edit"></i> Tambah</button>
                 </div>
             </form>
         </div>
