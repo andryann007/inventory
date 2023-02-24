@@ -7,15 +7,17 @@ $conn = mysqli_connect("localhost", "root", "", "db_inventory");
 
 // function untuk menambah data akun ke table data_user
 if (isset($_POST['addNewAccount'])) {
-    $tanggalAkun = $_POST['tglAkun'];
     $namaUser = $_POST['namaUser'];
-    $emailUser = $_POST['emailUser'];
+    $usernameUser = $_POST['usernameUser'];
+    $emailUser = strtolower($_POST['emailUser']);
     $passwordUser = $_POST['passwordUser'];
+    $alamatUser = $_POST['alamat'];
+    $tipeAkun = strtolower($_POST['tipeAkun']);
+    $fotoProfil = $_POST['fotoProfil'];
 
     //encrypt password md5 -> $passwordUser = md5($_POST['passwordUser']);
-    $tipeAkun = $_POST['tipeAkun'];
 
-    $addToUserTable = mysqli_query($conn, "INSERT INTO data_user (tanggal, username, email, password, account_type) VALUES ('$tanggalAkun', '$namaUser', '$emailUser', '$passwordUser', '$tipeAkun')");
+    $addToUserTable = mysqli_query($conn, "INSERT INTO data_user (nama_lengkap, username, email, password, alamat, tipe_akun, foto_profil) VALUES ('$namaUser', '$usernameUser', '$emailUser', '$passwordUser', '$alamatUser', '$tipeAkun', '$fotoProfil')");
 
     if ($addToUserTable) {
         echo "Data User BERHASIL di Tambahkan";
@@ -28,13 +30,16 @@ if (isset($_POST['addNewAccount'])) {
 if (isset($_POST['editAccount'])) {
     $idUser = $_POST['idUser'];
     $namaUser = $_POST['namaUser'];
+    $usernameUser = $_POST['usernameUser'];
     $emailUser = $_POST['emailUser'];
     $passwordUser = $_POST['passwordUser'];
+    $alamatUser = $_POST['alamat'];
+    $tipeAkun = $_POST['tipeAkun'];
+    $fotoProfil = $_POST['fotoProfil'];
 
     //encrypt password md5 -> $passwordUser = md5($_POST['passwordUser']);
-    $tipeAkun = $_POST['tipeAkun'];
 
-    $editUserTable = mysqli_query($conn, "UPDATE data_user SET username='$namaUser', email='$emailUser', password='$passwordUser', account_type='$tipeAkun' WHERE id_user='$idUser'");
+    $editUserTable = mysqli_query($conn, "UPDATE data_user SET nama_lengkap='$namaUser', username='$usernameUser', email='$emailUser', password='$passwordUser', alamat='$alamatUser', tipe_akun='$tipeAkun', foto_profil='$fotoProfil' WHERE id_user='$idUser'");
 
     if ($editUserTable) {
         echo "Data User BERHASIL di EDIT";

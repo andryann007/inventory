@@ -308,8 +308,8 @@ require 'check.php';
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>No</th>
-                                            <th>Tanggal</th>
-                                            <th>Nama</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Username</th>
                                             <th>Email</th>
                                             <th>Tipe Akun</th>
                                             <th class="text-center">Aksi</th>
@@ -321,18 +321,19 @@ require 'check.php';
                                         $i = 1;
                                         while ($data = mysqli_fetch_array($dataUser)) {
                                             $idUser = $data['id_user'];
-                                            $tanggal = $data['tanggal'];
+                                            $namaLengkap = $data['nama_lengkap'];
                                             $username = $data['username'];
                                             $email = $data['email'];
                                             $password = $data['password'];
-                                            $tipeAkun = $data['account_type'];
+                                            $tipeAkun = $data['tipe_akun'];
+                                            $alamat = $data['alamat'];
                                             ?>
                                             <tr>
                                                 <td>
                                                     <?= $i++; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $tanggal; ?>
+                                                    <?= ucwords($namaLengkap); ?>
                                                 </td>
                                                 <td>
                                                     <?= $username; ?>
@@ -341,9 +342,13 @@ require 'check.php';
                                                     <?= $email; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $tipeAkun; ?>
+                                                    <?= ucwords($tipeAkun); ?>
                                                 </td>
                                                 <td class="d-sm-flex justify-content-around align-items-center">
+                                                    <a href="detail_akun.php?id=<?= $idUser ?>" class="btn btn-primary"
+                                                        role="button"><i class="fas fa-info"></i> Detail</a>
+
+
                                                     <button type="button" class="btn btn-warning" data-toggle="modal"
                                                         data-target="#editAccountModal<?= $idUser; ?>">
                                                         <i class="fas fa-edit"></i> Edit
@@ -373,8 +378,15 @@ require 'check.php';
                                                                 <input type="hidden" name="idUser" value="<?= $idUser; ?>">
 
                                                                 <div class="form-group">
-                                                                    <label for="namaUser">Nama User</label>
+                                                                    <label for="namaUser">Nama Lengkap</label>
                                                                     <input type="text" name="namaUser" id="namaUser"
+                                                                        value="<?= $namaLengkap; ?>" class="form-control"
+                                                                        required>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="usernameUser">Username</label>
+                                                                    <input type="text" name="usernameUser" id="usernameUser"
                                                                         value="<?= $username; ?>" class="form-control"
                                                                         required>
                                                                 </div>
@@ -394,6 +406,13 @@ require 'check.php';
                                                                 </div>
 
                                                                 <div class="form-group">
+                                                                    <label for="alamat">Alamat Lengkap</label>
+                                                                    <input type="textarea" name="alamat" id="alamat"
+                                                                        value="<?= $alamat; ?>" class="form-control"
+                                                                        required>
+                                                                </div>
+
+                                                                <div class="form-group">
                                                                     <label for="tipeAkun">Tipe Akun</label>
                                                                     <select class="form-control" name="tipeAkun"
                                                                         id="tipeAkun" value="<?= $tipeAkun; ?>" required>
@@ -401,6 +420,12 @@ require 'check.php';
                                                                         <option>Admin</option>
                                                                         <option>User</option>
                                                                     </select>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="fotoProfil">Pilih Foto</label>
+                                                                    <input type="file" class="form-control-file"
+                                                                        name="fotoProfil" id="fotoProfil">
                                                                 </div>
                                                             </div>
 
@@ -541,26 +566,32 @@ require 'check.php';
             <form method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="tanggalAkun">Tanggal</label>
-                        <input type="date" name="tglAkun" id="tanggalAkun" placeholder="Tanggal" class="form-control"
+                        <label for="namaUser">Nama Lengkap</label>
+                        <input type="text" name="namaUser" id="namaUser" placeholder="Nama Lengkap" class="form-control"
                             required>
                     </div>
 
                     <div class="form-group">
-                        <label for="namaUser">Nama User</label>
-                        <input type="text" name="namaUser" id="namaUser" placeholder="Nama" class="form-control"
-                            required>
+                        <label for="usernameUser">Username</label>
+                        <input type="text" name="usernameUser" id="usernameUser" placeholder="@example"
+                            class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="emailUser">Email</label>
-                        <input type="email" name="emailUser" id="emailUser" placeholder="Email" class="form-control"
-                            required>
+                        <input type="email" name="emailUser" id="emailUser" placeholder="example@gmail.com"
+                            class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="passwordUser">Password</label>
-                        <input type="password" name="passwordUser" id="passwordUser" placeholder="Password"
+                        <input type="password" name="passwordUser" id="passwordUser" placeholder="********"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alamat">Alamat Lengkap</label>
+                        <input type="textarea" name="alamat" id="alamat" placeholder="Alamat Lengkap"
                             class="form-control" required>
                     </div>
 
@@ -572,6 +603,12 @@ require 'check.php';
                             <option>User</option>
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="fotoProfil">Pilih Foto</label>
+                        <input type="file" class="form-control-file" name="fotoProfil" id="fotoProfil">
+                    </div>
+
                 </div>
 
                 <div class="d-sm-flex modal-footer justify-content-between mb-4">
