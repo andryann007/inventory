@@ -78,16 +78,24 @@ require 'check.php';
         <!-- Nav Item - Data Akun -->
         <li class="nav-item">
           <a class="nav-link" href="akun.php">
-            <i class="fas fa-users"></i>
+            <i class="fas fa-id-card"></i>
             <span>Data Akun</span></a
           >
         </li>
 
-        <!-- Nav Item - Data Supplier -->
-        <li class="nav-item">
+         <!-- Nav Item - Data Supplier -->
+         <li class="nav-item">
           <a class="nav-link" href="supplier.php">
             <i class="fas fa-truck"></i>
             <span>Data Supplier</span></a
+          >
+        </li>
+
+        <!-- Nav Item - Data Customer -->
+        <li class="nav-item">
+          <a class="nav-link" href="customer.php">
+            <i class="fas fa-users"></i>
+            <span>Data Customer</span></a
           >
         </li>
 
@@ -105,7 +113,7 @@ require 'check.php';
         <!-- Heading Data Master -->
         <div class="sidebar-heading">Data Transaksi</div>
 
-        <!-- Nav Item - Data Akun -->
+        <!-- Nav Item - Data Barang Masuk -->
         <li class="nav-item active">
           <a class="nav-link" href="barang_masuk.php">
             <i class="fas fa-cube"></i>
@@ -113,7 +121,7 @@ require 'check.php';
           >
         </li>
 
-        <!-- Nav Item - Data Supplier -->
+        <!-- Nav Item - Data Barang Keluar -->
         <li class="nav-item">
           <a class="nav-link" href="barang_keluar.php">
             <i class="fas fa-cube"></i>
@@ -403,287 +411,287 @@ require 'check.php';
                     </thead>
                     <tbody>
                       <?php
-                                        $dataStock = mysqli_query($conn, "SELECT * FROM data_barang_masuk masuk, data_stock stock WHERE stock.id_barang = masuk.id_barang");
-                                        $i = 1;
-                                        while ($data = mysqli_fetch_array($dataStock)) {
-                                            $idMasuk = $data['id_masuk'];
-                                            $idBarang = $data['id_barang'];
-                                            $tanggal = $data['tanggal'];
-                                            $namaBarang = $data['nama_barang'];
-                                            $kategoriBarang = $data['kategori'];
-                                            $jumlahBarang = $data['qty_masuk'];
-                                            $hargaBarang = $data['harga'];
-                                            $keterangan = $data['keterangan'];
+                      $dataStock = mysqli_query($conn, "SELECT * FROM data_barang_masuk masuk, data_stock stock WHERE stock.id_barang = masuk.id_barang");
+                      $i = 1;
+                      while ($data = mysqli_fetch_array($dataStock)) {
+                        $idMasuk = $data['id_masuk'];
+                        $idBarang = $data['id_barang'];
+                        $tanggal = $data['tanggal'];
+                        $namaBarang = $data['nama_barang'];
+                        $kategoriBarang = $data['kategori'];
+                        $jumlahBarang = $data['qty_masuk'];
+                        $hargaBarang = $data['harga'];
+                        $keterangan = $data['keterangan'];
+                        ?>
+                              <tr>
+                                <td>
+                                  <?= $i++; ?>
+                                </td>
+                                <td>
+                                  <?= $tanggal; ?>
+                                </td>
+                                <td>
+                                  <?= ucwords($namaBarang); ?>
+                                </td>
+                                <td>
+                                  <?= ucwords($kategoriBarang); ?>
+                                </td>
+                                <td>
+                                  <?= $jumlahBarang; ?>
+                                </td>
+                                <td>
+                                  <?= $keterangan; ?>
+                                </td>
+                                <td
+                                  class="d-sm-flex justify-content-around align-items-center"
+                                >
+                                  <button
+                                    type="button"
+                                    class="btn btn-warning"
+                                    data-toggle="modal"
+                                    data-target="#editIncomingModal<?= $idMasuk ?>"
+                                  >
+                                    <i class="fas fa-edit"></i> Edit
+                                  </button>
+                                  <input
+                                    type="hidden"
+                                    name="idHapus"
+                                    value="<?= $idMasuk; ?>"
+                                  />
+                                  <button
+                                    type="button"
+                                    class="btn btn-danger"
+                                    data-toggle="modal"
+                                    data-target="#deleteIncomingModal<?= $idMasuk ?>"
+                                  >
+                                    <i class="fas fa-trash"></i> Delete
+                                  </button>
+                                </td>
+                              </tr>
+
+                              <!-- Edit Data Modal -->
+                              <div
+                                class="modal fade"
+                                id="editIncomingModal<?= $idMasuk ?>"
+                                tabindex="-1"
+                                aria-labelledby="editModalLabel"
+                                aria-hidden="true"
+                              >
+                                <div class="modal-dialog modal-dialog-centered">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="editModalLabel">
+                                        Edit Data Barang Masuk
+                                      </h5>
+                                      <button
+                                        type="button"
+                                        class="close"
+                                        data-dismiss="modal"
+                                        aria-label="Close"
+                                      >
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <form method="post">
+                                      <div class="modal-body">
+                                        <input
+                                          type="hidden"
+                                          name="idIncoming"
+                                          value="<?= $idMasuk; ?>"
+                                        />
+
+                                        <input
+                                          type="hidden"
+                                          name="jumlahBarangLama"
+                                          value="<?= $jumlahBarang; ?>"
+                                        />
+                                        <div class="form-group">
+                                          <label for="tanggalIncoming">Tanggal</label>
+                                          <input
+                                            type="date"
+                                            name="tglIncoming"
+                                            id="tanggalIncoming"
+                                            value="<?= $tanggal; ?>"
+                                            class="form-control"
+                                            required
+                                          />
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label for="namaBarang">Nama Barang</label>
+                                          <select
+                                            class="form-control"
+                                            name="namaBarang"
+                                            id="namaBarang"
+                                            required
+                                          >
+                                            <?php
+                                            $dataNamaBarang = mysqli_query($conn, "SELECT * FROM data_stock");
+                                            while ($fetchArray = mysqli_fetch_array($dataNamaBarang)) {
+                                              $idBarang = $fetchArray['id_barang'];
+                                              $namaBarang = $fetchArray['nama_barang'];
+                                              ?>
+
+                                                    <option value="<?= $idBarang; ?>">
+                                                      <?=
+                                                        ucwords($namaBarang); ?>
+                                                    </option>
+
+                                                    <?php
+                                            }
                                             ?>
-                      <tr>
-                        <td>
-                          <?= $i++; ?>
-                        </td>
-                        <td>
-                          <?= $tanggal; ?>
-                        </td>
-                        <td>
-                          <?= ucwords($namaBarang); ?>
-                        </td>
-                        <td>
-                          <?= ucwords($kategoriBarang); ?>
-                        </td>
-                        <td>
-                          <?= $jumlahBarang; ?>
-                        </td>
-                        <td>
-                          <?= $keterangan; ?>
-                        </td>
-                        <td
-                          class="d-sm-flex justify-content-around align-items-center"
-                        >
-                          <button
-                            type="button"
-                            class="btn btn-warning"
-                            data-toggle="modal"
-                            data-target="#editIncomingModal<?= $idMasuk ?>"
-                          >
-                            <i class="fas fa-edit"></i> Edit
-                          </button>
-                          <input
-                            type="hidden"
-                            name="idHapus"
-                            value="<?= $idMasuk; ?>"
-                          />
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            data-toggle="modal"
-                            data-target="#deleteIncomingModal<?= $idMasuk ?>"
-                          >
-                            <i class="fas fa-trash"></i> Delete
-                          </button>
-                        </td>
-                      </tr>
+                                          </select>
+                                        </div>
 
-                      <!-- Edit Data Modal -->
-                      <div
-                        class="modal fade"
-                        id="editIncomingModal<?= $idMasuk ?>"
-                        tabindex="-1"
-                        aria-labelledby="editModalLabel"
-                        aria-hidden="true"
-                      >
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="editModalLabel">
-                                Edit Data Barang Masuk
-                              </h5>
-                              <button
-                                type="button"
-                                class="close"
-                                data-dismiss="modal"
-                                aria-label="Close"
+                                        <div class="form-group">
+                                          <label for="jumlahBarang"
+                                            >Jumlah Barang</label
+                                          >
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            name="jumlahBarang"
+                                            id="jumlahBarang"
+                                            placeholder="<?= $jumlahBarang; ?>"
+                                            value="<?= $jumlahBarang; ?>"
+                                            class="form-control"
+                                            required
+                                          />
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label for="hargaSatuan">Harga Barang</label>
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            name="hargaSatuan"
+                                            id="hargaSatuan"
+                                            placeholder="<?= $hargaBarang ?>"
+                                            value="<?= $hargaBarang; ?>"
+                                            class="form-control"
+                                            required
+                                          />
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label for="namaSupplier"
+                                            >Nama Supplier</label
+                                          >
+                                          <select
+                                            class="form-control"
+                                            name="namaSupplier"
+                                            id="namaSupplier"
+                                            required
+                                          >
+                                            <?php
+                                            $dataNamaSupplier = mysqli_query($conn, "SELECT * FROM data_supplier");
+                                            while ($fetchArray = mysqli_fetch_array($dataNamaSupplier)) {
+                                              $idSupplier = $fetchArray['id_supplier'];
+                                              $namaSupplier = $fetchArray['nama_supplier'];
+                                              ?>
+
+                                                    <option value="<?= $idSupplier; ?>">
+                                                      <?=
+                                                        ucwords($namaSupplier); ?>
+                                                    </option>
+
+                                                    <?php
+                                            }
+                                            ?>
+                                          </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label for="keterangan">Keterangan</label>
+                                          <input
+                                            type="textarea"
+                                            min="0"
+                                            name="keterangan"
+                                            id="keterangan"
+                                            value="<?= $keterangan; ?>"
+                                            class="form-control"
+                                            required
+                                          />
+                                        </div>
+                                      </div>
+
+                                      <div class="d-sm-flex modal-footer mb-4">
+                                        <button
+                                          type="button"
+                                          class="btn btn-danger"
+                                          data-dismiss="modal"
+                                        >
+                                          <i class="fas fa-trash"></i> Batal
+                                        </button>
+                                        <button
+                                          type="submit"
+                                          class="btn btn-warning"
+                                          name="editIncomingGoods"
+                                        >
+                                          <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Delete Data Modal -->
+                              <div
+                                class="modal fade"
+                                tabindex="-1"
+                                aria-labelledby="deleteModalLabel"
+                                aria-hidden="true"
+                                id="deleteIncomingModal<?= $idMasuk; ?>"
                               >
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <form method="post">
-                              <div class="modal-body">
-                                <input
-                                  type="hidden"
-                                  name="idIncoming"
-                                  value="<?= $idMasuk; ?>"
-                                />
+                                <div class="modal-dialog modal-dialog-centered">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="deleteModalLabel">
+                                        Hapus Barang Masuk ?
+                                      </h5>
+                                      <button
+                                        type="button"
+                                        class="close"
+                                        data-dismiss="modal"
+                                        aria-label="Close"
+                                      >
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <form method="post">
+                                      <div class="modal-body text-center">
+                                        <b>Yakin Menghapus Barang Ini ?</b>
+                                      </div>
+                                      <input
+                                        type="hidden"
+                                        name="idBarang"
+                                        value="<?= $idBarang; ?>"
+                                      />
+                                      <input
+                                        type="hidden"
+                                        name="idHapus"
+                                        value="<?= $idMasuk; ?>"
+                                      />
 
-                                <input
-                                  type="hidden"
-                                  name="jumlahBarangLama"
-                                  value="<?= $jumlahBarang; ?>"
-                                />
-                                <div class="form-group">
-                                  <label for="tanggalIncoming">Tanggal</label>
-                                  <input
-                                    type="date"
-                                    name="tglIncoming"
-                                    id="tanggalIncoming"
-                                    value="<?= $tanggal; ?>"
-                                    class="form-control"
-                                    required
-                                  />
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="namaBarang">Nama Barang</label>
-                                  <select
-                                    class="form-control"
-                                    name="namaBarang"
-                                    id="namaBarang"
-                                    required
-                                  >
-                                    <?php
-                                                                        $dataNamaBarang = mysqli_query($conn, "SELECT * FROM data_stock");
-                                                                        while ($fetchArray = mysqli_fetch_array($dataNamaBarang)) {
-                                                                            $idBarang = $fetchArray['id_barang'];
-                                                                            $namaBarang = $fetchArray['nama_barang'];
-                                                                            ?>
-
-                                    <option value="<?= $idBarang; ?>">
-                                      <?=
-                                                                                  ucwords($namaBarang); ?>
-                                    </option>
-
-                                    <?php
-                                                                        }
-                                                                        ?>
-                                  </select>
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="jumlahBarang"
-                                    >Jumlah Barang</label
-                                  >
-                                  <input
-                                    type="number"
-                                    min="0"
-                                    name="jumlahBarang"
-                                    id="jumlahBarang"
-                                    placeholder="<?= $jumlahBarang; ?>"
-                                    value="<?= $jumlahBarang; ?>"
-                                    class="form-control"
-                                    required
-                                  />
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="hargaSatuan">Harga Barang</label>
-                                  <input
-                                    type="number"
-                                    min="0"
-                                    name="hargaSatuan"
-                                    id="hargaSatuan"
-                                    placeholder="<?= $hargaBarang ?>"
-                                    value="<?= $hargaBarang; ?>"
-                                    class="form-control"
-                                    required
-                                  />
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="namaSupplier"
-                                    >Nama Supplier</label
-                                  >
-                                  <select
-                                    class="form-control"
-                                    name="namaSupplier"
-                                    id="namaSupplier"
-                                    required
-                                  >
-                                    <?php
-                                                                        $dataNamaSupplier = mysqli_query($conn, "SELECT * FROM data_supplier");
-                                                                        while ($fetchArray = mysqli_fetch_array($dataNamaSupplier)) {
-                                                                            $idSupplier = $fetchArray['id_supplier'];
-                                                                            $namaSupplier = $fetchArray['nama_supplier'];
-                                                                            ?>
-
-                                    <option value="<?= $idSupplier; ?>">
-                                      <?=
-                                                                                  ucwords($namaSupplier); ?>
-                                    </option>
-
-                                    <?php
-                                                                        }
-                                                                        ?>
-                                  </select>
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="keterangan">Keterangan</label>
-                                  <input
-                                    type="textarea"
-                                    min="0"
-                                    name="keterangan"
-                                    id="keterangan"
-                                    value="<?= $keterangan; ?>"
-                                    class="form-control"
-                                    required
-                                  />
+                                      <div class="d-sm-flex modal-footer mb-4">
+                                        <button
+                                          type=" submit"
+                                          class="btn btn-danger"
+                                          name="deleteIncoming"
+                                        >
+                                          <i class="fas fa-trash"></i> Hapus
+                                        </button>
+                                      </div>
+                                    </form>
+                                  </div>
                                 </div>
                               </div>
 
-                              <div class="d-sm-flex modal-footer mb-4">
-                                <button
-                                  type="button"
-                                  class="btn btn-danger"
-                                  data-dismiss="modal"
-                                >
-                                  <i class="fas fa-trash"></i> Batal
-                                </button>
-                                <button
-                                  type="submit"
-                                  class="btn btn-warning"
-                                  name="editIncomingGoods"
-                                >
-                                  <i class="fas fa-edit"></i> Edit
-                                </button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
+                              <?php
 
-                      <!-- Delete Data Modal -->
-                      <div
-                        class="modal fade"
-                        tabindex="-1"
-                        aria-labelledby="deleteModalLabel"
-                        aria-hidden="true"
-                        id="deleteIncomingModal<?= $idMasuk; ?>"
-                      >
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="deleteModalLabel">
-                                Hapus Barang Masuk ?
-                              </h5>
-                              <button
-                                type="button"
-                                class="close"
-                                data-dismiss="modal"
-                                aria-label="Close"
-                              >
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <form method="post">
-                              <div class="modal-body text-center">
-                                <b>Yakin Menghapus Barang Ini ?</b>
-                              </div>
-                              <input
-                                type="hidden"
-                                name="idBarang"
-                                value="<?= $idBarang; ?>"
-                              />
-                              <input
-                                type="hidden"
-                                name="idHapus"
-                                value="<?= $idMasuk; ?>"
-                              />
-
-                              <div class="d-sm-flex modal-footer mb-4">
-                                <button
-                                  type=" submit"
-                                  class="btn btn-danger"
-                                  name="deleteIncoming"
-                                >
-                                  <i class="fas fa-trash"></i> Hapus
-                                </button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-
-                      <?php
-
-                                        }
-                                        ?>
+                      }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -822,19 +830,19 @@ require 'check.php';
                 required
               >
                 <?php
-                            $dataNamaBarang = mysqli_query($conn, "SELECT * FROM data_stock");
-                            while ($fetchArray = mysqli_fetch_array($dataNamaBarang)) {
-                                $idBarang = $fetchArray['id_barang'];
-                                $namaBarang = $fetchArray['nama_barang'];
-                                ?>
+                $dataNamaBarang = mysqli_query($conn, "SELECT * FROM data_stock");
+                while ($fetchArray = mysqli_fetch_array($dataNamaBarang)) {
+                  $idBarang = $fetchArray['id_barang'];
+                  $namaBarang = $fetchArray['nama_barang'];
+                  ?>
 
-                <option value="<?= $idBarang; ?>">
-                  <?= ucwords($namaBarang); ?>
-                </option>
+                        <option value="<?= $idBarang; ?>">
+                          <?= ucwords($namaBarang); ?>
+                        </option>
 
-                <?php
-                            }
-                            ?>
+                        <?php
+                }
+                ?>
               </select>
             </div>
 
@@ -873,19 +881,19 @@ require 'check.php';
                 required
               >
                 <?php
-                            $dataNamaSupplier = mysqli_query($conn, "SELECT * FROM data_supplier");
-                            while ($fetchArray = mysqli_fetch_array($dataNamaSupplier)) {
-                                $idSupplier = $fetchArray['id_supplier'];
-                                $namaSupplier = $fetchArray['nama_supplier'];
-                                ?>
+                $dataNamaSupplier = mysqli_query($conn, "SELECT * FROM data_supplier");
+                while ($fetchArray = mysqli_fetch_array($dataNamaSupplier)) {
+                  $idSupplier = $fetchArray['id_supplier'];
+                  $namaSupplier = $fetchArray['nama_supplier'];
+                  ?>
 
-                <option value="<?= $idSupplier; ?>">
-                  <?= ucwords($namaSupplier); ?>
-                </option>
+                        <option value="<?= $idSupplier; ?>">
+                          <?= ucwords($namaSupplier); ?>
+                        </option>
 
-                <?php
-                            }
-                            ?>
+                        <?php
+                }
+                ?>
               </select>
             </div>
 

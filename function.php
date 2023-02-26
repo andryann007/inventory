@@ -269,7 +269,7 @@ if (isset($_POST['addOutcomingGoods'])) {
     $jumlahBarangKeluar = $_POST['jumlahBarang'];
     $hargaSatuan = $_POST['hargaSatuan'];
     $totalHarga = $jumlahBarangKeluar * $hargaSatuan;
-    $idPembeli = $_POST['namaPembeli'];
+    $idCustomer = $_POST['namaCustomer'];
     $keterangan = $_POST['keterangan'];
 
     $cekStockSekarang = mysqli_query($conn, "SELECT * FROM data_stock WHERE id_barang='$idBarangKeluar'");
@@ -289,7 +289,7 @@ if (isset($_POST['addOutcomingGoods'])) {
             $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET status= 'habis' WHERE id_barang = '$idBarangKeluar'");
         }
 
-        $addToOutcomingTable = mysqli_query($conn, "INSERT INTO data_barang_keluar (tanggal, id_barang, qty_keluar, harga, total_harga, id_pembeli, keterangan) VALUES ('$tanggalBarangKeluar', '$idBarangKeluar', '$jumlahBarangKeluar', '$hargaSatuan', '$totalHarga', '$idPembeli', '$keterangan')");
+        $addToOutcomingTable = mysqli_query($conn, "INSERT INTO data_barang_keluar (tanggal, id_barang, qty_keluar, harga, total_harga, id_customer, keterangan) VALUES ('$tanggalBarangKeluar', '$idBarangKeluar', '$jumlahBarangKeluar', '$hargaSatuan', '$totalHarga', '$idCustomer', '$keterangan')");
 
         if ($addToOutcomingTable) {
             echo "Data Barang Keluar BERHASIL di Tambahkan";
@@ -306,7 +306,7 @@ if (isset($_POST['editOutcomingGoods'])) {
     $idKeluar = $_POST['idOutcoming'];
     $tanggalBarangKeluar = $_POST['tglOutcoming'];
     $idBarangKeluar = $_POST['namaBarang'];
-    $idPembeli = $_POST['namaPembeli'];
+    $idCustomer = $_POST['namaCustomer'];
     $hargaSatuan = $_POST['hargaSatuan'];
     $jumlahBarangBaru = $_POST['jumlahBarang'];
     $totalHarga = $hargaSatuan * $jumlahBarangBaru;
@@ -328,7 +328,7 @@ if (isset($_POST['editOutcomingGoods'])) {
         $stockBaru = ($jumlahTotalStock - $jumlahBarangLama) + $jumlahBarangBaru;
         $totalHargaBaru = ($totalHargaStock - $totalHargaLama) + $totalHarga;
 
-        $addToOutcomingTable = mysqli_query($conn, "UPDATE data_barang_keluar SET id_barang='$idBarangKeluar', id_pembeli='$idPembeli', tanggal='$tanggalBarangKeluar', qty_keluar='$jumlahBarangBaru', harga='$hargaSatuan', total_harga='$totalHarga', keterangan='$keterangan' WHERE id_keluar = '$idKeluar'");
+        $addToOutcomingTable = mysqli_query($conn, "UPDATE data_barang_keluar SET id_barang='$idBarangKeluar', id_customer='$idCustomer', tanggal='$tanggalBarangKeluar', qty_keluar='$jumlahBarangBaru', harga='$hargaSatuan', total_harga='$totalHarga', keterangan='$keterangan' WHERE id_keluar = '$idKeluar'");
         $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET qty='$stockBaru', status= 'tersedia', total_harga='$totalHargaBaru' WHERE id_barang = '$idBarangKeluar'");
 
         if ($addToOutcomingTable) {

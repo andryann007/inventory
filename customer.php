@@ -84,7 +84,7 @@ require 'check.php';
         </li>
 
          <!-- Nav Item - Data Supplier -->
-         <li class="nav-item active">
+         <li class="nav-item">
           <a class="nav-link" href="supplier.php">
             <i class="fas fa-truck"></i>
             <span>Data Supplier</span></a
@@ -92,7 +92,7 @@ require 'check.php';
         </li>
 
         <!-- Nav Item - Data Customer -->
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="customer.php">
             <i class="fas fa-users"></i>
             <span>Data Customer</span></a
@@ -174,7 +174,6 @@ require 'check.php';
         </li>
       </ul>
       <!-- End of Sidebar -->
-
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
@@ -372,15 +371,15 @@ require 'check.php';
             <div
               class="d-sm-flex align-items-center justify-content-between mb-4"
             >
-              <h2 class="h3 mb-0 text-gray-800">Data Supplier</h2>
+              <h2 class="h3 mb-0 text-gray-800">Data Customer</h2>
               <button
                 type="button"
                 class="btn btn-success btn-sm"
                 data-toggle="modal"
-                data-target="#addSupplierModal"
+                data-target="#addCustomerModal"
               >
                 <i class="fas fa-plus"></i>
-                Tambah Data Supplier
+                Tambah Data Customer
               </button>
             </div>
 
@@ -388,7 +387,7 @@ require 'check.php';
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">
-                  Data - Data Supplier
+                  Data - Data Customer
                 </h6>
               </div>
               <div class="card-body">
@@ -402,8 +401,8 @@ require 'check.php';
                     <thead class="thead-dark">
                       <tr>
                         <th>No</th>
-                        <th>ID Supplier</th>
-                        <th>Nama Supplier</th>
+                        <th>ID Customer</th>
+                        <th>Nama Customer</th>
                         <th>Alamat</th>
                         <th>No. Telp</th>
                         <th class="text-center">Aksi</th>
@@ -411,226 +410,226 @@ require 'check.php';
                     </thead>
                     <tbody>
                       <?php
-                      $dataStock = mysqli_query($conn, "SELECT * FROM data_supplier");
+                      $dataStock = mysqli_query($conn, "SELECT * FROM data_customer");
                       $i = 1;
                       while ($data = mysqli_fetch_array($dataStock)) {
-                        $idSupplier = $data['id_supplier'];
-                        $namaSupplier = $data['nama_supplier'];
-                        $alamatSupplier = $data['alamat_supplier'];
-                        $telpSupplier = $data['telp_supplier'];
+                        $idCustomer = $data['id_customer'];
+                        $namaCustomer = $data['nama_customer'];
+                        $alamatCustomer = $data['alamat_customer'];
+                        $telpCustomer = $data['telp_customer'];
                         ?>
-                            <tr>
-                              <td>
-                                <?= $i++; ?>
-                              </td>
-                              <td>
-                                <?= $idSupplier; ?>
-                              </td>
-                              <td>
-                                <?= $namaSupplier; ?>
-                              </td>
-                              <td>
-                                <?= $alamatSupplier; ?>
-                              </td>
-                              <td>
-                                <?= $telpSupplier; ?>
-                              </td>
-                              <td
-                                class="d-sm-flex justify-content-around align-items-center"
-                              >
-                                <a
-                                  href="detail_akun.php?id=<?= $idUser ?>"
-                                  class="btn btn-primary"
-                                  role="button"
-                                  ><i class="fas fa-info"></i> Detail</a
-                                >
+                                          <tr>
+                                            <td>
+                                              <?= $i++; ?>
+                                            </td>
+                                            <td>
+                                              <?= $idCustomer; ?>
+                                            </td>
+                                            <td>
+                                              <?= $namaCustomer; ?>
+                                            </td>
+                                            <td>
+                                              <?= $alamatCustomer; ?>
+                                            </td>
+                                            <td>
+                                              <?= $telpCustomer; ?>
+                                            </td>
+                                            <td
+                                              class="d-sm-flex justify-content-around align-items-center"
+                                            >
+                                              <a
+                                                href="detail_akun.php?id=<?= $idUser ?>"
+                                                class="btn btn-primary"
+                                                role="button"
+                                                ><i class="fas fa-info"></i> Detail</a
+                                              >
 
-                                <button
-                                  type="button"
-                                  class="btn btn-warning"
-                                  data-toggle="modal"
-                                  data-target="#editSupplierModal<?= $idSupplier ?>"
-                                >
-                                  <i class="fas fa-edit"></i> Edit
-                                </button>
-                                <input
-                                  type="hidden"
-                                  name="idHapus"
-                                  value="<?= $idSupplier; ?>"
-                                />
-                                <button
-                                  type="button"
-                                  class="btn btn-danger"
-                                  data-toggle="modal"
-                                  data-target="#deleteSupplierModal<?= $idSupplier ?>"
-                                >
-                                  <i class="fas fa-trash"></i> Delete
-                                </button>
-                              </td>
-                            </tr>
+                                              <button
+                                                type="button"
+                                                class="btn btn-warning"
+                                                data-toggle="modal"
+                                                data-target="#editCustomerModal<?= $idCustomer ?>"
+                                              >
+                                                <i class="fas fa-edit"></i> Edit
+                                              </button>
+                                              <input
+                                                type="hidden"
+                                                name="idHapus"
+                                                value="<?= $idCustomer; ?>"
+                                              />
+                                              <button
+                                                type="button"
+                                                class="btn btn-danger"
+                                                data-toggle="modal"
+                                                data-target="#deleteCustomerModal<?= $idCustomer ?>"
+                                              >
+                                                <i class="fas fa-trash"></i> Delete
+                                              </button>
+                                            </td>
+                                          </tr>
 
-                            <!-- Edit Data Modal -->
-                            <div
-                              class="modal fade"
-                              id="editSupplierModal<?= $idSupplier ?>"
-                              tabindex="-1"
-                              aria-labelledby="addModalLabel"
-                              aria-hidden="true"
-                            >
-                              <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="addModalLabel">
-                                      Edit Data Supplier
-                                    </h5>
-                                    <button
-                                      type="button"
-                                      class="close"
-                                      data-dismiss="modal"
-                                      aria-label="Close"
-                                    >
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <form method="post">
-                                    <div class="modal-body">
-                                      <input
-                                        type="hidden"
-                                        name="idSupplier"
-                                        value="<?= $idSupplier; ?>"
-                                      />
+                                          <!-- Edit Data Modal -->
+                                          <div
+                                            class="modal fade"
+                                            id="editCustomerModal<?= $idCustomer ?>"
+                                            tabindex="-1"
+                                            aria-labelledby="addModalLabel"
+                                            aria-hidden="true"
+                                          >
+                                            <div class="modal-dialog modal-dialog-centered">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="addModalLabel">
+                                                    Edit Data Customer
+                                                  </h5>
+                                                  <button
+                                                    type="button"
+                                                    class="close"
+                                                    data-dismiss="modal"
+                                                    aria-label="Close"
+                                                  >
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <form method="post">
+                                                  <div class="modal-body">
+                                                    <input
+                                                      type="hidden"
+                                                      name="idCustomer"
+                                                      value="<?= $idCustomer; ?>"
+                                                    />
 
-                                      <div class="form-group">
-                                        <label for="idSupplier">ID Supplier</label>
-                                        <input
-                                          type="text"
-                                          name="idSupplier"
-                                          id="idSupplier"
-                                          placeholder="ID Supplier"
-                                          class="form-control"
-                                          required
-                                        />
-                                      </div>
+                                                    <div class="form-group">
+                                                      <label for="idCustomer">ID Customer</label>
+                                                      <input
+                                                        type="text"
+                                                        name="idCustomer"
+                                                        id="idCustomer"
+                                                        placeholder="ID Customer"
+                                                        class="form-control"
+                                                        required
+                                                      />
+                                                    </div>
 
-                                      <div class="form-group">
-                                        <label for="namaSupplier"
-                                          >Nama Supplier</label
-                                        >
-                                        <input
-                                          type="text"
-                                          name="namaSupplier"
-                                          id="namaSupplier"
-                                          value="<?= $namaSupplier; ?>"
-                                          class="form-control"
-                                          required
-                                        />
-                                      </div>
+                                                    <div class="form-group">
+                                                      <label for="namaCustomer"
+                                                        >Nama Customer</label
+                                                      >
+                                                      <input
+                                                        type="text"
+                                                        name="namaCustomer"
+                                                        id="namaCustomer"
+                                                        value="<?= $namaCustomer; ?>"
+                                                        class="form-control"
+                                                        required
+                                                      />
+                                                    </div>
 
-                                      <div class="form-group">
-                                        <label for="alamatSupplier"
-                                          >Alamat Supplier</label
-                                        >
-                                        <input
-                                          type="text"
-                                          name="alamatSupplier"
-                                          id="alamatSupplier"
-                                          value="<?= $alamatSupplier; ?>"
-                                          class="form-control"
-                                          required
-                                        />
-                                      </div>
+                                                    <div class="form-group">
+                                                      <label for="alamatCustomer"
+                                                        >Alamat Customer</label
+                                                      >
+                                                      <input
+                                                        type="text"
+                                                        name="alamatCustomer"
+                                                        id="alamatCustomer"
+                                                        value="<?= $alamatCustomer; ?>"
+                                                        class="form-control"
+                                                        required
+                                                      />
+                                                    </div>
 
-                                      <div class="form-group">
-                                        <label for="telpSupplier"
-                                          >Telp. Supplier Supplier</label
-                                        >
-                                        <input
-                                          type="number"
-                                          name="telpSupplier"
-                                          id="telpSupplier"
-                                          placeholder="<?= $telpSupplier; ?>"
-                                          value="<?= $telpSupplier; ?>"
-                                          class="form-control"
-                                          required
-                                        />
-                                      </div>
-                                    </div>
+                                                    <div class="form-group">
+                                                      <label for="telpCustomer"
+                                                        >Telp. Customer</label
+                                                      >
+                                                      <input
+                                                        type="number"
+                                                        name="telpCustomer"
+                                                        id="telpCustomer"
+                                                        placeholder="<?= $telpCustomer; ?>"
+                                                        value="<?= $telpCustomer; ?>"
+                                                        class="form-control"
+                                                        required
+                                                      />
+                                                    </div>
+                                                  </div>
 
-                                    <div
-                                      class="d-sm-flex modal-footer justify-content-between mb-4"
-                                    >
-                                      <button
-                                        type="button"
-                                        class="btn btn-danger"
-                                        data-dismiss="modal"
-                                      >
-                                        <i class="fas fa-trash"></i> Batal
-                                      </button>
-                                      <button
-                                        type="submit"
-                                        class="btn btn-primary"
-                                        name="editSupplier"
-                                      >
-                                        <i class="fas fa-plus"></i> Tambah
-                                      </button>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
+                                                  <div
+                                                    class="d-sm-flex modal-footer justify-content-between mb-4"
+                                                  >
+                                                    <button
+                                                      type="button"
+                                                      class="btn btn-danger"
+                                                      data-dismiss="modal"
+                                                    >
+                                                      <i class="fas fa-trash"></i> Batal
+                                                    </button>
+                                                    <button
+                                                      type="submit"
+                                                      class="btn btn-primary"
+                                                      name="editCustomer"
+                                                    >
+                                                      <i class="fas fa-plus"></i> Tambah
+                                                    </button>
+                                                  </div>
+                                                </form>
+                                              </div>
+                                            </div>
+                                          </div>
 
-                            <!-- Delete Data Modal -->
-                            <div
-                              class="modal fade"
-                              tabindex="-1"
-                              aria-labelledby="deleteModalLabel"
-                              aria-hidden="true"
-                              id="deleteSupplierModal<?= $idSupplier; ?>"
-                            >
-                              <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="deleteModalLabel">
-                                      Hapus Supplier ?
-                                    </h5>
-                                    <button
-                                      type="button"
-                                      class="close"
-                                      data-dismiss="modal"
-                                      aria-label="Close"
-                                    >
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <form method="post">
-                                    <div class="modal-body text-center">
-                                      Apakah anda yakin ingin menghapus supplier
-                                      <b>
-                                        <?= $namaSupplier ?>
-                                      </b>
-                                      ?
-                                    </div>
-                                    <input
-                                      type="hidden"
-                                      name="idHapus"
-                                      value="<?= $idSupplier; ?>"
-                                    />
+                                          <!-- Delete Data Modal -->
+                                          <div
+                                            class="modal fade"
+                                            tabindex="-1"
+                                            aria-labelledby="deleteModalLabel"
+                                            aria-hidden="true"
+                                            id="deleteCustomerModal<?= $idCustomer; ?>"
+                                          >
+                                            <div class="modal-dialog modal-dialog-centered">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="deleteModalLabel">
+                                                    Hapus Customer ?
+                                                  </h5>
+                                                  <button
+                                                    type="button"
+                                                    class="close"
+                                                    data-dismiss="modal"
+                                                    aria-label="Close"
+                                                  >
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <form method="post">
+                                                  <div class="modal-body text-center">
+                                                    Apakah anda yakin ingin menghapus Customer
+                                                    <b>
+                                                      <?= $namaCustomer ?>
+                                                    </b>
+                                                    ?
+                                                  </div>
+                                                  <input
+                                                    type="hidden"
+                                                    name="idHapus"
+                                                    value="<?= $idCustomer; ?>"
+                                                  />
 
-                                    <div class="d-sm-flex modal-footer mb-4">
-                                      <button
-                                        type=" submit"
-                                        class="btn btn-danger"
-                                        name="deleteSupplier"
-                                      >
-                                        <i class="fas fa-trash"></i> Hapus
-                                      </button>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
+                                                  <div class="d-sm-flex modal-footer mb-4">
+                                                    <button
+                                                      type=" submit"
+                                                      class="btn btn-danger"
+                                                      name="deleteCustomer"
+                                                    >
+                                                      <i class="fas fa-trash"></i> Hapus
+                                                    </button>
+                                                  </div>
+                                                </form>
+                                              </div>
+                                            </div>
+                                          </div>
 
-                            <?php
+                                          <?php
                       }
                       ?>
                     </tbody>
@@ -728,7 +727,7 @@ require 'check.php';
   <!-- Add Data Modal -->
   <div
     class="modal fade"
-    id="addSupplierModal"
+    id="addCustomerModal"
     tabindex="-1"
     aria-labelledby="addModalLabel"
     aria-hidden="true"
@@ -736,7 +735,7 @@ require 'check.php';
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addModalLabel">Tambah Data Supplier</h5>
+          <h5 class="modal-title" id="addModalLabel">Tambah Data Customer</h5>
           <button
             type="button"
             class="close"
@@ -749,47 +748,47 @@ require 'check.php';
         <form method="post">
           <div class="modal-body">
             <div class="form-group">
-              <label for="idSupplier">ID Supplier</label>
+              <label for="idCustomer">ID Customer</label>
               <input
                 type="text"
-                name="idSupplier"
-                id="idSupplier"
-                placeholder="ID Supplier"
+                name="idCustomer"
+                id="idCustomer"
+                placeholder="ID Customer"
                 class="form-control"
                 required
               />
             </div>
 
             <div class="form-group">
-              <label for="namaSupplier">Nama Supplier</label>
+              <label for="namaCustomer">Nama Customer</label>
               <input
                 type="text"
-                name="namaSupplier"
-                id="namaSupplier"
-                placeholder="Nama Supplier"
+                name="namaCustomer"
+                id="namaCustomer"
+                placeholder="Nama Customer"
                 class="form-control"
                 required
               />
             </div>
 
             <div class="form-group">
-              <label for="alamatSupplier">Alamat Supplier</label>
+              <label for="alamatCustomer">Alamat Customer</label>
               <input
                 type="text"
-                name="alamatSupplier"
-                id="alamatSupplier"
-                placeholder="Alamat Supplier"
+                name="alamatCustomer"
+                id="alamatCustomer"
+                placeholder="Alamat Customer"
                 class="form-control"
                 required
               />
             </div>
 
             <div class="form-group">
-              <label for="telpSupplier">No. Telp Supplier</label>
+              <label for="telpCustomer">No. Telp Customer</label>
               <input
                 type="telp"
-                name="telpSupplier"
-                id="telpSupplier"
+                name="telpCustomer"
+                id="telpCustomer"
                 class="form-control"
                 required
               />
@@ -800,7 +799,7 @@ require 'check.php';
             <button type="button" class="btn btn-danger" data-dismiss="modal">
               <i class="fas fa-trash"></i> Batal
             </button>
-            <button type="submit" class="btn btn-warning" name="addNewSupplier">
+            <button type="submit" class="btn btn-warning" name="addNewCustomer">
               <i class="fas fa-edit"></i> Tambah
             </button>
           </div>
