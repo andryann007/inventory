@@ -63,12 +63,12 @@ if (isset($_POST['deleteAccount'])) {
 
 //function untuk menambah data supplier ke table data_supplier
 if (isset($_POST['addNewSupplier'])) {
-    $tanggalSupplier = $_POST['tglSupplier'];
+    $idSupplier = $_POST['idSupplier'];
     $namaSupplier = $_POST['namaSupplier'];
     $alamatSupplier = $_POST['alamatSupplier'];
     $telpSupplier = $_POST['telpSupplier'];
 
-    $addToSupplierTable = mysqli_query($conn, "INSERT INTO data_supplier (tanggal, nama_supplier, alamat_supplier, telp_supplier) VALUES ('$tanggalSupplier', '$namaSupplier', '$alamatSupplier', '$telpSupplier')");
+    $addToSupplierTable = mysqli_query($conn, "INSERT INTO data_supplier (id_supplier, nama_supplier, alamat_supplier, telp_supplier) VALUES ('$idSupplier', '$namaSupplier', '$alamatSupplier', '$telpSupplier')");
 
     if ($addToSupplierTable) {
         echo "Data Supplier BERHASIL di Tambahkan";
@@ -77,15 +77,14 @@ if (isset($_POST['addNewSupplier'])) {
     }
 }
 
-//function untuk mengedit / UPDATE tabel data_barang_masuk
+//function untuk mengedit / UPDATE tabel data_supplier
 if (isset($_POST['editSupplier'])) {
     $idSupplier = $_POST['idSupplier'];
-    $tanggalSupplier = $_POST['tglSupplier'];
     $namaSupplier = $_POST['namaSupplier'];
     $alamatSupplier = $_POST['alamatSupplier'];
     $telpSupplier = $_POST['telpSupplier'];
 
-    $editSupplierTable = mysqli_query($conn, "UPDATE data_supplier SET tanggal='$tanggalSupplier', nama_supplier='$namaSupplier', alamat_supplier='$alamatSupplier', telp_supplier='$telpSupplier' WHERE id_supplier='$idSupplier'");
+    $editSupplierTable = mysqli_query($conn, "UPDATE data_supplier SET nama_supplier='$namaSupplier', alamat_supplier='$alamatSupplier', telp_supplier='$telpSupplier' WHERE id_supplier='$idSupplier'");
 
     if ($editSupplierTable) {
         echo "Data Supplier BERHASIL di EDIT";
@@ -109,13 +108,15 @@ if (isset($_POST['deleteSupplier'])) {
 
 //function untuk menambah data stok barang ke table data_stock
 if (isset($_POST['addNewStock'])) {
-    $tanggalStock = $_POST['tglStock'];
-    $namaBarang = $_POST['namaBarang'];
-    $kategoriBarang = $_POST['kategoriBarang'];
+    $idBarang = $_POST['idBarang'];
+    $namaBarang = strtolower($_POST['namaBarang']);
+    $kategoriBarang = strtolower($_POST['kategoriBarang']);
     $jumlahBarang = $_POST['jumlahBarang'];
-    $statusBarang = 'Tersedia';
+    $hargaSatuan = $_POST['hargaSatuan'];
+    $totalHarga = $jumlahBarang * $hargaSatuan;
+    $statusBarang = 'tersedia';
 
-    $addToStockTable = mysqli_query($conn, "INSERT INTO data_stock (tanggal, nama_barang, kategori_barang, jumlah_stock, status_barang) VALUES ('$tanggalStock', '$namaBarang', '$kategoriBarang', '$jumlahBarang', '$statusBarang')");
+    $addToStockTable = mysqli_query($conn, "INSERT INTO data_stock (id_barang, nama_barang, kategori, qty, harga, total_harga, status) VALUES ('$idBarang', '$namaBarang', '$kategoriBarang', '$jumlahBarang', '$hargaSatuan', '$totalHarga', '$statusBarang')");
 
     if ($addToStockTable) {
         echo "Data Stock BERHASIL di Tambahkan";
@@ -127,18 +128,20 @@ if (isset($_POST['addNewStock'])) {
 //function untuk mengedit / UPDATE tabel data_stock
 if (isset($_POST['editStock'])) {
     $idBarang = $_POST['idStock'];
-    $tanggalStock = $_POST['tglStock'];
-    $namaBarang = $_POST['namaBarang'];
-    $kategoriBarang = $_POST['kategoriBarang'];
+    $namaBarang = strtolower($_POST['namaBarang']);
+    $kategoriBarang = strtolower($_POST['kategoriBarang']);
     $jumlahBarang = $_POST['jumlahBarang'];
+    $hargaSatuan = $_POST['hargaSatuan'];
+    $totalHarga = $jumlahBarang * $hargaSatuan;
+    $statusBarang = 'tersedia';
 
     if ($jumlahBarang > 0) {
-        $statusBarang = 'Tersedia';
+        $statusBarang = 'tersedia';
     } else {
-        $statusBarang = 'Habis';
+        $statusBarang = 'habis';
     }
 
-    $editStockTable = mysqli_query($conn, "UPDATE data_stock SET tanggal='$tanggalStock', nama_barang='$namaBarang', kategori_barang='$kategoriBarang', jumlah_stock='$jumlahBarang', status_barang='$statusBarang' WHERE id_barang='$idBarang'");
+    $editStockTable = mysqli_query($conn, "UPDATE data_stock SET id_barang='$idBarang', nama_barang='$namaBarang', kategori='$kategoriBarang', qty='$jumlahBarang', harga='$hargaSatuan', total_harga = '$totalHarga', status='$statusBarang' WHERE id_barang='$idBarang'");
 
     if ($editStockTable) {
         echo "Data Stock BERHASIL di Tambahkan";
@@ -165,21 +168,25 @@ if (isset($_POST['addIncomingGoods'])) {
     $tanggalBarangMasuk = $_POST['tglIncoming'];
     $idBarangMasuk = $_POST['namaBarang'];
     $jumlahBarangMasuk = $_POST['jumlahBarang'];
-    $totalHarga = $_POST['totalHarga'];
+    $hargaSatuan = $_POST['hargaSatuan'];
+    $totalHarga = $jumlahBarangMasuk * $hargaSatuan;
+    $idSupplier = $_POST['namaSupplier'];
+    $keterangan = $_POST['keterangan'];
 
     $cekStockSekarang = mysqli_query($conn, "SELECT * FROM data_stock WHERE id_barang='$idBarangMasuk'");
     $ambilDataStock = mysqli_fetch_array($cekStockSekarang);
 
-    $stockLama = $ambilDataStock['jumlah_stock'];
+    $stockLama = $ambilDataStock['qty'];
+    $totalHargaLama = $ambilDataStock['total_harga'];
 
     //jika jumlah barang masuk > 0 maka proses akan dilanjutkan karena valid
     if ($jumlahBarangMasuk > 0) {
         $stockBaru = $stockLama + $jumlahBarangMasuk;
-        $addToIncomingTable = mysqli_query($conn, "INSERT INTO data_barang_masuk (tanggal, id_barang, jumlah_barang, harga_barang) VALUES ('$tanggalBarangMasuk', '$idBarangMasuk', '$jumlahBarangMasuk', '$totalHarga')");
+        $totalHargaBaru = $totalHargaLama + $totalHarga;
+        $addToIncomingTable = mysqli_query($conn, "INSERT INTO data_barang_masuk (tanggal, id_barang, qty_masuk, harga, total_harga, id_supplier, keterangan) VALUES ('$tanggalBarangMasuk', '$idBarangMasuk', '$jumlahBarangMasuk', '$hargaSatuan', '$totalHarga', '$idSupplier', '$keterangan')");
 
-        $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET status_barang= 'Tersedia' WHERE id_barang = '$idBarangMasuk'");
+        $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET qty='$stockBaru', total_harga='$totalHargaBaru', status= 'tersedia' WHERE id_barang = '$idBarangMasuk'");
 
-        $updateStockBarang = mysqli_query($conn, "UPDATE data_stock SET jumlah_stock='$stockBaru' WHERE id_barang = '$idBarangMasuk'");
         if ($addToIncomingTable) {
             echo "Data Barang Masuk BERHASIL di Tambahkan";
         } else {
@@ -193,27 +200,31 @@ if (isset($_POST['editIncomingGoods'])) {
     $idMasuk = $_POST['idIncoming'];
     $tanggalBarangMasuk = $_POST['tglIncoming'];
     $idBarangMasuk = $_POST['namaBarang'];
+    $idSupplier = $_POST['namaSupplier'];
+    $hargaSatuan = $_POST['hargaSatuan'];
+    $jumlahBarangBaru = $_POST['jumlahBarang'];
+    $totalHarga = $hargaSatuan * $jumlahBarangBaru;
+    $keterangan = $_POST['keterangan'];
 
     $dataBarangMasuk = mysqli_query($conn, "SELECT * FROM data_barang_masuk WHERE id_masuk='$idMasuk'");
     $fetchArray = mysqli_fetch_array($dataBarangMasuk);
-
-    $jumlahBarangLama = $fetchArray['jumlah_barang'];
-    $jumlahBarangBaru = $_POST['jumlahBarang'];
-
-    $totalHarga = $_POST['totalHarga'];
+    $jumlahBarangLama = $fetchArray['qty_masuk'];
+    $totalHargaLama = $fetchArray['total_harga'];
 
     $cekStockSekarang = mysqli_query($conn, "SELECT * FROM data_stock WHERE id_barang='$idBarangMasuk'");
     $ambilDataStock = mysqli_fetch_array($cekStockSekarang);
-    $jumlahTotalStock = $ambilDataStock['jumlah_stock'];
+    $idStockBarang = $ambilDataStock['id_barang'];
+    $jumlahTotalStock = $ambilDataStock['qty'];
+    $totalHargaStock = $ambilDataStock['total_harga'];
 
     //jika jumlah barang masuk > 0 maka proses akan dilanjutkan karena valid
     if ($jumlahBarangBaru > 0) {
         $stockBaru = ($jumlahTotalStock - $jumlahBarangLama) + $jumlahBarangBaru;
-        $addToIncomingTable = mysqli_query($conn, "UPDATE data_barang_masuk SET tanggal='$tanggalBarangMasuk', jumlah_barang='$jumlahBarangBaru', harga_barang='$totalHarga' WHERE id_masuk = '$idMasuk'");
+        $totalHargaBaru = ($totalHargaStock - $totalHargaLama) + $totalHarga;
+        $addToIncomingTable = mysqli_query($conn, "UPDATE data_barang_masuk SET id_barang='$idBarangMasuk', id_supplier='$idSupplier', tanggal='$tanggalBarangMasuk', qty_masuk='$jumlahBarangBaru', harga='$hargaSatuan', total_harga='$totalHarga', keterangan='$keterangan' WHERE id_masuk = '$idMasuk'");
 
-        $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET status_barang= 'Tersedia' WHERE id_barang = '$idBarangMasuk'");
+        $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET qty='$stockBaru', total_harga='$totalHargaBaru',status= 'tersedia' WHERE id_barang = '$idBarangMasuk'");
 
-        $updateStockBarang = mysqli_query($conn, "UPDATE data_stock SET jumlah_stock='$stockBaru' WHERE id_barang = '$idBarangMasuk'");
         if ($addToIncomingTable) {
             echo "Data Barang Masuk BERHASIL di EDIT";
         } else {
@@ -229,15 +240,18 @@ if (isset($_POST['deleteIncoming'])) {
 
     $cekStockSekarang = mysqli_query($conn, "SELECT * FROM data_stock WHERE id_barang='$idBarangMasuk'");
     $ambilDataStock = mysqli_fetch_array($cekStockSekarang);
-    $jumlahTotalStock = $ambilDataStock['jumlah_stock'];
+    $jumlahTotalStock = $ambilDataStock['qty'];
+    $totalHargaStock = $ambilDataStock['total_harga'];
 
     $dataBarangMasuk = mysqli_query($conn, "SELECT * FROM data_barang_masuk WHERE id_masuk='$idHapus'");
     $fetchArray = mysqli_fetch_array($dataBarangMasuk);
-    $jumlahTotalMasuk = $fetchArray['jumlah_barang'];
+    $jumlahTotalMasuk = $fetchArray['qty_masuk'];
+    $totalHargaMasuk = $fetchArray['total_harga'];
 
     $stockBaru = $jumlahTotalStock - $jumlahTotalMasuk;
+    $totalHargaBaru = $totalHargaStock - $totalHargaMasuk;
 
-    $updateStockBarang = mysqli_query($conn, "UPDATE data_stock SET jumlah_stock='$stockBaru' WHERE id_barang = '$idBarangMasuk'");
+    $updateStockBarang = mysqli_query($conn, "UPDATE data_stock SET qty='$stockBaru', total_harga='$totalHargaBaru' WHERE id_barang = '$idBarangMasuk'");
 
     $hapusUserTable = mysqli_query($conn, "DELETE FROM data_barang_masuk WHERE id_masuk='$idHapus'");
 
@@ -253,23 +267,29 @@ if (isset($_POST['addOutcomingGoods'])) {
     $tanggalBarangKeluar = $_POST['tglOutcoming'];
     $idBarangKeluar = $_POST['namaBarang'];
     $jumlahBarangKeluar = $_POST['jumlahBarang'];
-    $totalHarga = $_POST['totalHarga'];
+    $hargaSatuan = $_POST['hargaSatuan'];
+    $totalHarga = $jumlahBarangKeluar * $hargaSatuan;
+    $idPembeli = $_POST['namaPembeli'];
+    $keterangan = $_POST['keterangan'];
 
     $cekStockSekarang = mysqli_query($conn, "SELECT * FROM data_stock WHERE id_barang='$idBarangKeluar'");
     $ambilDataStock = mysqli_fetch_array($cekStockSekarang);
 
-    $stockLama = $ambilDataStock['jumlah_stock'];
+    $stockLama = $ambilDataStock['qty'];
+    $totalHargaLama = $ambilDataStock['total_harga'];
 
     //jika stok lama > 0 dan jumlah barang keluar < jumlah stok lama maka data valid dan fungsi akan dilanjutkan
     if ($stockLama > 0 && $jumlahBarangKeluar <= $stockLama) {
         $stockBaru = $stockLama - $jumlahBarangKeluar;
-        $updateStockBarang = mysqli_query($conn, "UPDATE data_stock SET jumlah_stock='$stockBaru' WHERE id_barang = '$idBarangKeluar'");
+        $totalHargaBaru = $totalHargaLama - $totalHarga;
+
+        $updateStockBarang = mysqli_query($conn, "UPDATE data_stock SET qty='$stockBaru', total_harga='$totalHargaBaru' WHERE id_barang = '$idBarangKeluar'");
 
         if ($stockBaru == 0) {
-            $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET status_barang= 'Habis' WHERE id_barang = '$idBarangKeluar'");
+            $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET status= 'habis' WHERE id_barang = '$idBarangKeluar'");
         }
 
-        $addToOutcomingTable = mysqli_query($conn, "INSERT INTO data_barang_keluar (tanggal, id_barang, jumlah_barang, harga_barang) VALUES ('$tanggalBarangKeluar', '$idBarangKeluar', '$jumlahBarangKeluar', '$totalHarga')");
+        $addToOutcomingTable = mysqli_query($conn, "INSERT INTO data_barang_keluar (tanggal, id_barang, qty_keluar, harga, total_harga, id_pembeli, keterangan) VALUES ('$tanggalBarangKeluar', '$idBarangKeluar', '$jumlahBarangKeluar', '$hargaSatuan', '$totalHarga', '$idPembeli', '$keterangan')");
 
         if ($addToOutcomingTable) {
             echo "Data Barang Keluar BERHASIL di Tambahkan";
@@ -286,27 +306,31 @@ if (isset($_POST['editOutcomingGoods'])) {
     $idKeluar = $_POST['idOutcoming'];
     $tanggalBarangKeluar = $_POST['tglOutcoming'];
     $idBarangKeluar = $_POST['namaBarang'];
+    $idPembeli = $_POST['namaPembeli'];
+    $hargaSatuan = $_POST['hargaSatuan'];
+    $jumlahBarangBaru = $_POST['jumlahBarang'];
+    $totalHarga = $hargaSatuan * $jumlahBarangBaru;
+    $keterangan = $_POST['keterangan'];
 
     $dataBarangKeluar = mysqli_query($conn, "SELECT * FROM data_barang_keluar WHERE id_keluar='$idKeluar'");
     $fetchArray = mysqli_fetch_array($dataBarangKeluar);
-
-    $jumlahBarangLama = $fetchArray['jumlah_barang'];
-    $jumlahBarangBaru = $_POST['jumlahBarang'];
-
-    $totalHarga = $_POST['totalHarga'];
+    $jumlahBarangLama = $fetchArray['qty_keluar'];
+    $totalHargaLama = $fetchArray['total_harga'];
 
     $cekStockSekarang = mysqli_query($conn, "SELECT * FROM data_stock WHERE id_barang='$idBarangKeluar'");
     $ambilDataStock = mysqli_fetch_array($cekStockSekarang);
-    $jumlahTotalStock = $ambilDataStock['jumlah_stock'];
+    $idStockBarang = $ambilDataStock['id_barang'];
+    $jumlahTotalStock = $ambilDataStock['qty'];
+    $totalHargaStock = $ambilDataStock['total_harga'];
 
     //jika jumlah barang masuk > 0 maka proses akan dilanjutkan karena valid
     if ($jumlahBarangBaru > 0) {
         $stockBaru = ($jumlahTotalStock - $jumlahBarangLama) + $jumlahBarangBaru;
-        $addToOutcomingTable = mysqli_query($conn, "UPDATE data_barang_keluar SET tanggal='$tanggalBarangKeluar', jumlah_barang='$jumlahBarangBaru', harga_barang='$totalHarga' WHERE id_keluar = '$idKeluar'");
+        $totalHargaBaru = ($totalHargaStock - $totalHargaLama) + $totalHarga;
 
-        $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET status_barang= 'Tersedia' WHERE id_barang = '$idBarangKeluar'");
+        $addToOutcomingTable = mysqli_query($conn, "UPDATE data_barang_keluar SET id_barang='$idBarangKeluar', id_pembeli='$idPembeli', tanggal='$tanggalBarangKeluar', qty_keluar='$jumlahBarangBaru', harga='$hargaSatuan', total_harga='$totalHarga', keterangan='$keterangan' WHERE id_keluar = '$idKeluar'");
+        $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET qty='$stockBaru', status= 'tersedia', total_harga='$totalHargaBaru' WHERE id_barang = '$idBarangKeluar'");
 
-        $updateStockBarang = mysqli_query($conn, "UPDATE data_stock SET jumlah_stock='$stockBaru' WHERE id_barang = '$idBarangKeluar'");
         if ($addToOutcomingTable) {
             echo "Data Barang Keluar BERHASIL di EDIT";
         } else {
