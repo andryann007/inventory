@@ -1,9 +1,9 @@
 <?php
 //function untuk connect database
-require 'function.php';
+include 'function.php';
 
 //function untuk mengecek sudah login / blm
-require 'check.php';
+include 'check.php';
 ?>
 
 <!DOCTYPE html>
@@ -275,6 +275,22 @@ require 'check.php';
                 class="fas fa-download fa-sm text-white-50"></i>Tambah
               Data</a>
           </div>
+
+          <?php
+          $ambilDataStock = mysqli_query($conn, "SELECT * FROM data_stock WHERE qty < 1");
+
+          while ($fetchArray = mysqli_fetch_array($ambilDataStock)) {
+            $namaBarang = $fetchArray['nama_barang'];
+            ?>
+
+            <div class="alert alert-danger">
+              <strong>Perhatian!</strong> Stock Barang
+              <?= ucwords($namaBarang); ?> Telah Habis !!!.
+            </div>
+
+          <?php
+          }
+          ?>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">

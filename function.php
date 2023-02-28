@@ -346,15 +346,15 @@ if (isset($_POST['deleteOutcoming'])) {
 
     $cekStockSekarang = mysqli_query($conn, "SELECT * FROM data_stock WHERE id_barang='$idBarangKeluar'");
     $ambilDataStock = mysqli_fetch_array($cekStockSekarang);
-    $jumlahTotalStock = $ambilDataStock['jumlah_stock'];
+    $jumlahTotalStock = $ambilDataStock['qty'];
 
     $dataBarangKeluar = mysqli_query($conn, "SELECT * FROM data_barang_keluar WHERE id_keluar='$idHapus'");
     $fetchArray = mysqli_fetch_array($dataBarangKeluar);
-    $jumlahTotalKeluar = $fetchArray['jumlah_barang'];
+    $jumlahTotalKeluar = $fetchArray['qty_keluar'];
 
     $stockBaru = $jumlahTotalStock + $jumlahTotalKeluar;
 
-    $updateStockBarang = mysqli_query($conn, "UPDATE data_stock SET jumlah_stock='$stockBaru', status_barang= 'Tersedia' WHERE id_barang = '$idBarangKeluar'");
+    $updateStockBarang = mysqli_query($conn, "UPDATE data_stock SET qty='$stockBaru', status='tersedia' WHERE id_barang = '$idBarangKeluar'");
 
     $hapusUserTable = mysqli_query($conn, "DELETE FROM data_barang_keluar WHERE id_keluar='$idHapus'");
 
