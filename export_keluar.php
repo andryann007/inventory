@@ -18,7 +18,7 @@ include 'check.php';
     <link rel="icon" type="image/png" href="img/icons/favicon.ico" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <title>Data Stock Barang</title>
+    <title>Data Barang Keluar</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -54,8 +54,8 @@ include 'check.php';
                     </div>
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h2 class="h3 mb-0 text-gray-800 col-md-9">Export Data Stock Barang</h2>
-                        <a href="stock.php" class="btn btn-danger btn-sm col-md2" role="button"><i
+                        <h2 class="h3 mb-0 text-gray-800 col-md-9">Export Data Barang Keluar</h2>
+                        <a href="barang_masuk.php" class="btn btn-danger btn-sm col-md2" role="button"><i
                                 class="fas fa-arrow-left"></i> Back to Main Menu</a>
 
                     </div>
@@ -68,33 +68,45 @@ include 'check.php';
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>No</th>
-                                            <th>ID Barang</th>
+                                            <th>Tanggal</th>
                                             <th>Nama Barang</th>
                                             <th>Kategori</th>
                                             <th>Jumlah</th>
                                             <th>Harga Satuan</th>
                                             <th>Total Harga</th>
+                                            <th>Nama Customer</th>
+                                            <th>Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $dataStock = mysqli_query($conn, "SELECT * FROM data_stock");
+                                        $dataKeluar = mysqli_query($conn, "SELECT * FROM data_barang_keluar");
                                         $i = 1;
-                                        while ($data = mysqli_fetch_array($dataStock)) {
+                                        while ($data = mysqli_fetch_array($dataKeluar)) {
+                                            $tanggal = $data['tanggal'];
                                             $idBarang = $data['id_barang'];
-                                            $namaBarang = $data['nama_barang'];
-                                            $kategoriBarang = $data['kategori'];
-                                            $jumlahBarang = $data['qty'];
+                                            $idCustomer = $data['id_customer'];
+
+                                            $ambilDataBarang = mysqli_query($conn, "SELECT * FROM data_stock WHERE id_barang='$idBarang'");
+                                            $dataBarang = mysqli_fetch_array($ambilDataBarang);
+                                            $namaBarang = $dataBarang['nama_barang'];
+                                            $kategoriBarang = $dataBarang['kategori'];
+
+                                            $ambilDataCustomer = mysqli_query($conn, "SELECT * FROM data_customer WHERE id_customer='$idCustomer'");
+                                            $dataCustomer = mysqli_fetch_array($ambilDataCustomer);
+                                            $namaCustomer = $dataCustomer['nama_customer'];
+
+                                            $jumlahBarang = $data['qty_keluar'];
                                             $hargaSatuan = $data['harga'];
                                             $totalHarga = $hargaSatuan * $jumlahBarang;
-                                            $statusBarang = $data['status'];
+                                            $keterangan = $data['keterangan'];
                                             ?>
                                             <tr>
                                                 <td>
                                                     <?= $i++; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $idBarang; ?>
+                                                    <?= $tanggal; ?>
                                                 </td>
                                                 <td>
                                                     <?= ucwords($namaBarang); ?>
@@ -110,6 +122,12 @@ include 'check.php';
                                                 </td>
                                                 <td>
                                                     <?= $totalHarga; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $namaCustomer; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $keterangan; ?>
                                                 </td>
                                             </tr>
                                             <?php
@@ -171,15 +189,15 @@ include 'check.php';
                 dom: 'Bfrtip',
                 buttons: [
                     {
-                        extend: 'excel', title: "Data Stock Barang", text: '<i class="fas fa-file-excel"></i> Excel',
+                        extend: 'excel', title: "Data Barang Keluar", text: '<i class="fas fa-file-excel"></i> Excel',
                         className: 'btn btn-primary visible-lg-inline-block'
                     },
                     {
-                        extend: 'pdf', title: "Data Stock Barang", text: '<i class="fas fa-file-pdf"></i> PDF',
+                        extend: 'pdf', title: "Data Barang Keluar", text: '<i class="fas fa-file-pdf"></i> PDF',
                         className: 'btn btn-primary visible-lg-inline-block'
                     },
                     {
-                        extend: 'print', title: "Data Stock Barang", text: '<i class="fas fa-print"></i> Print',
+                        extend: 'print', title: "Data Barang Keluar", text: '<i class="fas fa-print"></i> Print',
                         className: 'btn btn-primary visible-lg-inline-block'
                     }
                 ]
