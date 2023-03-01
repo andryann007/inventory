@@ -32,10 +32,8 @@ include 'check.php';
     <!-- template table bootstrap 4 -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-    <!-- tempalate datatables for export data -->
-    <link
-        href="https:/cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.13.3/af-2.5.2/b-2.3.5/b-colvis-2.3.5/b-html-2.3.5/b-print-2.3.5/r-2.4.0/datatables.min.css"
-        rel="stylesheet" />
+    <!-- template datatables for export data -->
+    <link href="css/datatables.min.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -154,16 +152,7 @@ include 'check.php';
     <script src="js/demo/chart-pie-demo.js"></script>
 
     <!-- Data Table for Export Data -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script
-        src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.13.3/af-2.5.2/b-2.3.5/b-colvis-2.3.5/b-html5-2.3.5/b-print-2.3.5/r-2.4.0/datatables.min.js"></script>
-
+    <script src="js/datatables.min.js"></script>
     <!-- Script for Export Data -->
     <script>
         $(document).ready(function () {
