@@ -93,7 +93,7 @@ if (isset($_POST['editSupplier'])) {
     }
 }
 
-// function untuk menghapus / DELETE tabel data_user
+// function untuk menghapus / DELETE tabel data_supplier
 if (isset($_POST['deleteSupplier'])) {
     $idHapus = $_POST['idHapus'];
 
@@ -103,6 +103,52 @@ if (isset($_POST['deleteSupplier'])) {
         echo "Data Supplier BERHASIL di HAPUS";
     } else {
         echo "Data Supplier GAGAL di HAPUS";
+    }
+}
+
+
+//function untuk menambah data customer ke table data_customer
+if (isset($_POST['addNewCustomer'])) {
+    $idCustomer = $_POST['idCustomer'];
+    $namaCustomer = $_POST['namaCustomer'];
+    $alamatCustomer = $_POST['alamatCustomer'];
+    $telpCustomer = $_POST['telpCustomer'];
+
+    $addToCustomerTable = mysqli_query($conn, "INSERT INTO data_customer (id_customer, nama_customer, alamat_customer, telp_customer) VALUES ('$idCustomer', '$namaCustomer', '$alamatCustomer', '$telpCustomer')");
+
+    if ($addToCustomerTable) {
+        echo "Data Supplier BERHASIL di Tambahkan";
+    } else {
+        echo "Data Supplier GAGAL di Tambahkan";
+    }
+}
+
+//function untuk mengedit / UPDATE tabel data_customer
+if (isset($_POST['editCustomer'])) {
+    $idCustomer = $_POST['idCustomer'];
+    $namaCustomer = $_POST['namaCustomer'];
+    $alamatCustomer = $_POST['alamatCustomer'];
+    $telpCustomer = $_POST['telpCustomer'];
+
+    $editCustomerTable = mysqli_query($conn, "UPDATE data_customer SET nama_customer='$namaCustomer', alamat_customer='$alamatCustomer', telp_customer='$telpCustomer' WHERE id_customer='$idCustomer'");
+
+    if ($editCustomerTable) {
+        echo "Data Customer BERHASIL di EDIT";
+    } else {
+        echo "Data Customer GAGAL di EDIT";
+    }
+}
+
+// function untuk menghapus / DELETE tabel data_customer
+if (isset($_POST['deleteCustomer'])) {
+    $idHapus = $_POST['idHapus'];
+
+    $hapusCustomerTable = mysqli_query($conn, "DELETE FROM data_customer WHERE id_customer='$idHapus'");
+
+    if ($hapusCustomerTable) {
+        echo "Data Customer BERHASIL di HAPUS";
+    } else {
+        echo "Data Customer GAGAL di HAPUS";
     }
 }
 
