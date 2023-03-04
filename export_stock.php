@@ -84,7 +84,9 @@ include 'check.php';
                                             $kategoriBarang = $data['kategori'];
                                             $jumlahBarang = $data['qty'];
                                             $hargaSatuan = $data['harga'];
+                                            $hargaSatuanRp = "Rp. " . number_format($hargaSatuan, 2, ',', '.');
                                             $totalHarga = $hargaSatuan * $jumlahBarang;
+                                            $totalHargaRp = "Rp. " . number_format($totalHarga, 2, ',', '.');
                                             $statusBarang = $data['status'];
                                             ?>
                                             <tr>
@@ -104,10 +106,10 @@ include 'check.php';
                                                     <?= $jumlahBarang; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $hargaSatuan; ?>
+                                                    <?= $hargaSatuanRp; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $totalHarga; ?>
+                                                    <?= $totalHargaRp; ?>
                                                 </td>
                                             </tr>
                                             <?php
