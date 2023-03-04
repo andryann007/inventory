@@ -60,7 +60,7 @@ $fotoProfil = $fetchArray['foto_profil'];
   <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
-<!-- Sidebar -->
+      <!-- Sidebar -->
       <ul
         class="navbar-nav bg-dark sidebar sidebar-dark accordion"
         id="accordionSidebar"
@@ -70,9 +70,7 @@ $fotoProfil = $fetchArray['foto_profil'];
           class="sidebar-brand d-flex align-items-center justify-content-center"
           href="index.php"
         >
-          <div class="sidebar-brand-icon">
-            <i class="fas fa-store"></i>
-          </div>
+          <img src="img/logo.png" style="width: 25%" />
           <div class="sidebar-brand-text mx-2">Toko Sukses</div>
         </a>
 
@@ -98,8 +96,8 @@ $fotoProfil = $fetchArray['foto_profil'];
           >
         </li>
 
-         <!-- Nav Item - Data Supplier -->
-         <li class="nav-item">
+        <!-- Nav Item - Data Supplier -->
+        <li class="nav-item">
           <a class="nav-link" href="supplier.php">
             <i class="fas fa-truck"></i>
             <span>Data Supplier</span></a
@@ -189,7 +187,6 @@ $fotoProfil = $fetchArray['foto_profil'];
         </li>
       </ul>
       <!-- End of Sidebar -->
-
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
@@ -389,26 +386,24 @@ $fotoProfil = $fetchArray['foto_profil'];
             >
               <h1 class="h3 mb-0 text-gray-800 col-md-9">Detail Akun</h1>
               <a
-                    href="akun.php"
-                    class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
-                    role="button"
-                    ><i class="fas fa-arrow-left fa-sm text-white-50"></i>
-                    Back to Main Menu</a
-                  >
-                  <a
-                    href="#"
-                    class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"
-                    role="button"
-                    data-toggle="modal"
-                    data-target="#editAccount<?= $idUser; ?>"
-                    ><i class="fas fa-edit fa-sm text-white-50"></i> Edit
-                    Akun</a
-                  >
+                href="akun.php"
+                class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
+                role="button"
+                ><i class="fas fa-arrow-left fa-sm text-white-50"></i> Back to
+                Main Menu</a
+              >
+              <a
+                href="#"
+                class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"
+                role="button"
+                data-toggle="modal"
+                data-target="#editAccount<?= $idUser; ?>"
+                ><i class="fas fa-edit fa-sm text-white-50"></i> Edit Akun</a
+              >
             </div>
             <div class="row">
               <div class="col-lg-3 col-md-4 xs-margin-30px-bottom">
                 <div class="team-single-img">
-                  
                   <img
                     class="img-thumbnail"
                     src="https://bootdey.com/img/Content/avatar/avatar7.png"
@@ -569,7 +564,8 @@ $fotoProfil = $fetchArray['foto_profil'];
                       </div>
                       <div class="col-md-5 col-5">
                         <p>
-                          : <?= ucwords($namaLengkap); ?>
+                          :
+                          <?= ucwords($namaLengkap); ?>
                         </p>
                       </div>
                     </div>
@@ -582,7 +578,8 @@ $fotoProfil = $fetchArray['foto_profil'];
                       </div>
                       <div class="col-md-5 col-5">
                         <p>
-                          : <?= $username; ?>
+                          :
+                          <?= $username; ?>
                         </p>
                       </div>
                     </div>
@@ -595,7 +592,8 @@ $fotoProfil = $fetchArray['foto_profil'];
                       </div>
                       <div class="col-md-5 col-5">
                         <p>
-                          : <?= $email; ?>
+                          :
+                          <?= $email; ?>
                         </p>
                       </div>
                     </div>
@@ -608,7 +606,8 @@ $fotoProfil = $fetchArray['foto_profil'];
                       </div>
                       <div class="col-md-5 col-5">
                         <p>
-                          : <?= $alamat; ?>
+                          :
+                          <?= $alamat; ?>
                         </p>
                       </div>
                     </div>
@@ -623,7 +622,8 @@ $fotoProfil = $fetchArray['foto_profil'];
                       </div>
                       <div class="col-md-5 col-5">
                         <p>
-                          : <?= ucwords($tipeAkun); ?>
+                          :
+                          <?= ucwords($tipeAkun); ?>
                         </p>
                       </div>
                     </div>
@@ -670,246 +670,246 @@ $fotoProfil = $fetchArray['foto_profil'];
                       $tipeAkun = $data['tipe_akun'];
                       $alamat = $data['alamat'];
                       ?>
-                                                      <tr>
-                                                        <td>
-                                                          <?= $i++; ?>
-                                                        </td>
-                                                        <td>
-                                                          <?= ucwords($namaLengkap); ?>
-                                                        </td>
-                                                        <td>
-                                                          <?= $username; ?>
-                                                        </td>
-                                                        <td>
-                                                          <?= $email; ?>
-                                                        </td>
-                                                        <td>
-                                                          <?= ucwords($tipeAkun); ?>
-                                                        </td>
-                                                        <td
-                                                          class="d-sm-flex justify-content-around align-items-center"
-                                                        >
-                                                          <a
-                                                            href="detail_akun.php?id=<?= $idUser ?>"
-                                                            class="btn btn-primary"
-                                                            role="button"
-                                                            ><i class="fas fa-info"></i> Detail</a
-                                                          >
+                    <tr>
+                      <td>
+                        <?= $i++; ?>
+                      </td>
+                      <td>
+                        <?= ucwords($namaLengkap); ?>
+                      </td>
+                      <td>
+                        <?= $username; ?>
+                      </td>
+                      <td>
+                        <?= $email; ?>
+                      </td>
+                      <td>
+                        <?= ucwords($tipeAkun); ?>
+                      </td>
+                      <td
+                        class="d-sm-flex justify-content-around align-items-center"
+                      >
+                        <a
+                          href="detail_akun.php?id=<?= $idUser ?>"
+                          class="btn btn-primary"
+                          role="button"
+                          ><i class="fas fa-info"></i> Detail</a
+                        >
 
-                                                          <button
-                                                            type="button"
-                                                            class="btn btn-warning"
-                                                            data-toggle="modal"
-                                                            data-target="#editAccountModal<?= $idUser; ?>"
-                                                          >
-                                                            <i class="fas fa-edit"></i> Edit
-                                                          </button>
-                                                          <input
-                                                            type="hidden"
-                                                            name="idHapus"
-                                                            value="<?= $idUser; ?>"
-                                                          />
-                                                          <button
-                                                            type="button"
-                                                            class="btn btn-danger"
-                                                            data-toggle="modal"
-                                                            data-target="#deleteAccountModal<?= $idUser; ?>"
-                                                          >
-                                                            <i class="fas fa-trash"></i> Delete
-                                                          </button>
-                                                        </td>
-                                                      </tr>
+                        <button
+                          type="button"
+                          class="btn btn-warning"
+                          data-toggle="modal"
+                          data-target="#editAccountModal<?= $idUser; ?>"
+                        >
+                          <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <input
+                          type="hidden"
+                          name="idHapus"
+                          value="<?= $idUser; ?>"
+                        />
+                        <button
+                          type="button"
+                          class="btn btn-danger"
+                          data-toggle="modal"
+                          data-target="#deleteAccountModal<?= $idUser; ?>"
+                        >
+                          <i class="fas fa-trash"></i> Delete
+                        </button>
+                      </td>
+                    </tr>
 
-                                                      <!-- Edit Data Modal -->
-                                                      <div
-                                                        class="modal fade"
-                                                        tabindex="-1"
-                                                        aria-labelledby="editModalLabel"
-                                                        aria-hidden="true"
-                                                        id="editAccountModal<?= $idUser; ?>"
-                                                      >
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                          <div class="modal-content">
-                                                            <div class="modal-header">
-                                                              <h5 class="modal-title" id="editModalLabel">
-                                                                Edit Data Akun
-                                                              </h5>
-                                                              <button
-                                                                type="button"
-                                                                class="close"
-                                                                data-dismiss="modal"
-                                                                aria-label="Close"
-                                                              >
-                                                                <span aria-hidden="true">&times;</span>
-                                                              </button>
-                                                            </div>
-                                                            <form method="post">
-                                                              <div class="modal-body">
-                                                                <input
-                                                                  type="hidden"
-                                                                  name="idUser"
-                                                                  value="<?= $idUser; ?>"
-                                                                />
+                    <!-- Edit Data Modal -->
+                    <div
+                      class="modal fade"
+                      tabindex="-1"
+                      aria-labelledby="editModalLabel"
+                      aria-hidden="true"
+                      id="editAccountModal<?= $idUser; ?>"
+                    >
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">
+                              Edit Data Akun
+                            </h5>
+                            <button
+                              type="button"
+                              class="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form method="post">
+                            <div class="modal-body">
+                              <input
+                                type="hidden"
+                                name="idUser"
+                                value="<?= $idUser; ?>"
+                              />
 
-                                                                <div class="form-group">
-                                                                  <label for="namaUser">Nama Lengkap</label>
-                                                                  <input
-                                                                    type="text"
-                                                                    name="namaUser"
-                                                                    id="namaUser"
-                                                                    value="<?= $namaLengkap; ?>"
-                                                                    class="form-control"
-                                                                    required
-                                                                  />
-                                                                </div>
+                              <div class="form-group">
+                                <label for="namaUser">Nama Lengkap</label>
+                                <input
+                                  type="text"
+                                  name="namaUser"
+                                  id="namaUser"
+                                  value="<?= $namaLengkap; ?>"
+                                  class="form-control"
+                                  required
+                                />
+                              </div>
 
-                                                                <div class="form-group">
-                                                                  <label for="usernameUser">Username</label>
-                                                                  <input
-                                                                    type="text"
-                                                                    name="usernameUser"
-                                                                    id="usernameUser"
-                                                                    value="<?= $username; ?>"
-                                                                    class="form-control"
-                                                                    required
-                                                                  />
-                                                                </div>
+                              <div class="form-group">
+                                <label for="usernameUser">Username</label>
+                                <input
+                                  type="text"
+                                  name="usernameUser"
+                                  id="usernameUser"
+                                  value="<?= $username; ?>"
+                                  class="form-control"
+                                  required
+                                />
+                              </div>
 
-                                                                <div class="form-group">
-                                                                  <label for="emailUser">Email</label>
-                                                                  <input
-                                                                    type="email"
-                                                                    name="emailUser"
-                                                                    id="emailUser"
-                                                                    value="<?= $email; ?>"
-                                                                    class="form-control"
-                                                                    required
-                                                                  />
-                                                                </div>
+                              <div class="form-group">
+                                <label for="emailUser">Email</label>
+                                <input
+                                  type="email"
+                                  name="emailUser"
+                                  id="emailUser"
+                                  value="<?= $email; ?>"
+                                  class="form-control"
+                                  required
+                                />
+                              </div>
 
-                                                                <div class="form-group">
-                                                                  <label for="passwordUser">Password</label>
-                                                                  <input
-                                                                    type="password"
-                                                                    name="passwordUser"
-                                                                    id="passwordUser"
-                                                                    value="<?= $password; ?>"
-                                                                    class="form-control"
-                                                                    required
-                                                                  />
-                                                                </div>
+                              <div class="form-group">
+                                <label for="passwordUser">Password</label>
+                                <input
+                                  type="password"
+                                  name="passwordUser"
+                                  id="passwordUser"
+                                  value="<?= $password; ?>"
+                                  class="form-control"
+                                  required
+                                />
+                              </div>
 
-                                                                <div class="form-group">
-                                                                  <label for="alamat">Alamat Lengkap</label>
-                                                                  <input
-                                                                    type="textarea"
-                                                                    name="alamat"
-                                                                    id="alamat"
-                                                                    value="<?= $alamat; ?>"
-                                                                    class="form-control"
-                                                                    required
-                                                                  />
-                                                                </div>
+                              <div class="form-group">
+                                <label for="alamat">Alamat Lengkap</label>
+                                <input
+                                  type="textarea"
+                                  name="alamat"
+                                  id="alamat"
+                                  value="<?= $alamat; ?>"
+                                  class="form-control"
+                                  required
+                                />
+                              </div>
 
-                                                                <div class="form-group">
-                                                                  <label for="tipeAkun">Tipe Akun</label>
-                                                                  <select
-                                                                    class="form-control"
-                                                                    name="tipeAkun"
-                                                                    id="tipeAkun"
-                                                                    value="<?= $tipeAkun; ?>"
-                                                                    required
-                                                                  >
-                                                                    <option>Super Admin</option>
-                                                                    <option>Admin</option>
-                                                                    <option>User</option>
-                                                                  </select>
-                                                                </div>
+                              <div class="form-group">
+                                <label for="tipeAkun">Tipe Akun</label>
+                                <select
+                                  class="form-control"
+                                  name="tipeAkun"
+                                  id="tipeAkun"
+                                  value="<?= $tipeAkun; ?>"
+                                  required
+                                >
+                                  <option>Super Admin</option>
+                                  <option>Admin</option>
+                                  <option>User</option>
+                                </select>
+                              </div>
 
-                                                                <div class="form-group">
-                                                                  <label for="fotoProfil">Pilih Foto</label>
-                                                                  <input
-                                                                    type="file"
-                                                                    class="form-control-file"
-                                                                    name="fotoProfil"
-                                                                    id="fotoProfil"
-                                                                  />
-                                                                </div>
-                                                              </div>
+                              <div class="form-group">
+                                <label for="fotoProfil">Pilih Foto</label>
+                                <input
+                                  type="file"
+                                  class="form-control-file"
+                                  name="fotoProfil"
+                                  id="fotoProfil"
+                                />
+                              </div>
+                            </div>
 
-                                                              <div class="d-sm-flex modal-footer mb-4">
-                                                                <button
-                                                                  type="button"
-                                                                  class="btn btn-danger"
-                                                                  data-dismiss="modal"
-                                                                >
-                                                                  <i class="fas fa-trash"></i> Batal
-                                                                </button>
-                                                                <button
-                                                                  type=" submit"
-                                                                  class="btn btn-warning"
-                                                                  name="editAccount"
-                                                                >
-                                                                  <i class="fas fa-edit"></i> Edit
-                                                                </button>
-                                                              </div>
-                                                            </form>
-                                                          </div>
-                                                        </div>
-                                                      </div>
+                            <div class="d-sm-flex modal-footer mb-4">
+                              <button
+                                type="button"
+                                class="btn btn-danger"
+                                data-dismiss="modal"
+                              >
+                                <i class="fas fa-trash"></i> Batal
+                              </button>
+                              <button
+                                type=" submit"
+                                class="btn btn-warning"
+                                name="editAccount"
+                              >
+                                <i class="fas fa-edit"></i> Edit
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
 
-                                                      <!-- Delete Data Modal -->
-                                                      <div
-                                                        class="modal fade"
-                                                        tabindex="-1"
-                                                        aria-labelledby="deleteModalLabel"
-                                                        aria-hidden="true"
-                                                        id="deleteAccountModal<?= $idUser; ?>"
-                                                      >
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                          <div class="modal-content">
-                                                            <div class="modal-header">
-                                                              <h5 class="modal-title" id="deleteModalLabel">
-                                                                Hapus Akun ?
-                                                              </h5>
-                                                              <button
-                                                                type="button"
-                                                                class="close"
-                                                                data-dismiss="modal"
-                                                                aria-label="Close"
-                                                              >
-                                                                <span aria-hidden="true">&times;</span>
-                                                              </button>
-                                                            </div>
-                                                            <form method="post">
-                                                              <div class="modal-body text-center">
-                                                                Apakah anda yakin ingin menghapus akun
-                                                                <b>
-                                                                  <?= $username ?>
-                                                                </b>
-                                                                ?
-                                                              </div>
-                                                              <input
-                                                                type="hidden"
-                                                                name="idHapus"
-                                                                value="<?= $idUser; ?>"
-                                                              />
+                    <!-- Delete Data Modal -->
+                    <div
+                      class="modal fade"
+                      tabindex="-1"
+                      aria-labelledby="deleteModalLabel"
+                      aria-hidden="true"
+                      id="deleteAccountModal<?= $idUser; ?>"
+                    >
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">
+                              Hapus Akun ?
+                            </h5>
+                            <button
+                              type="button"
+                              class="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form method="post">
+                            <div class="modal-body text-center">
+                              Apakah anda yakin ingin menghapus akun
+                              <b>
+                                <?= $username ?>
+                              </b>
+                              ?
+                            </div>
+                            <input
+                              type="hidden"
+                              name="idHapus"
+                              value="<?= $idUser; ?>"
+                            />
 
-                                                              <div class="d-sm-flex modal-footer mb-4">
-                                                                <button
-                                                                  type=" submit"
-                                                                  class="btn btn-danger"
-                                                                  name="deleteAccount"
-                                                                >
-                                                                  <i class="fas fa-trash"></i> Hapus
-                                                                </button>
-                                                              </div>
-                                                            </form>
-                                                          </div>
-                                                        </div>
-                                                      </div>
+                            <div class="d-sm-flex modal-footer mb-4">
+                              <button
+                                type=" submit"
+                                class="btn btn-danger"
+                                name="deleteAccount"
+                              >
+                                <i class="fas fa-trash"></i> Hapus
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
 
-                                                      <?php
+                    <?php
 
                     }
                     ?>

@@ -20,9 +20,15 @@ if (isset($_POST['addNewAccount'])) {
     $addToUserTable = mysqli_query($conn, "INSERT INTO data_user (nama_lengkap, username, email, password, alamat, tipe_akun, foto_profil) VALUES ('$namaUser', '$usernameUser', '$emailUser', '$passwordUser', '$alamatUser', '$tipeAkun', '$fotoProfil')");
 
     if ($addToUserTable) {
-        echo "Data User BERHASIL di Tambahkan";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Akun Berhasil diTAMBAH!!!</strong>
+            </div>";
     } else {
-        echo "Data User GAGAL di Tambahkan";
+        echo "<div class='alert alert-success danger-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Akun Gagal diTAMBAH!!!</strong>
+            </div>";
     }
 }
 
@@ -42,9 +48,15 @@ if (isset($_POST['editAccount'])) {
     $editUserTable = mysqli_query($conn, "UPDATE data_user SET nama_lengkap='$namaUser', username='$usernameUser', email='$emailUser', password='$passwordUser', alamat='$alamatUser', tipe_akun='$tipeAkun', foto_profil='$fotoProfil' WHERE id_user='$idUser'");
 
     if ($editUserTable) {
-        echo "Data User BERHASIL di EDIT";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                Data Akun <strong>$namaUser</strong> Berhasil di EDIT!!!
+            </div>";
     } else {
-        echo "Data User GAGAL di EDIT";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                Data Akun <strong>$namaUser</strong> Gagal di EDIT!!!
+            </div>";
     }
 }
 
@@ -55,9 +67,15 @@ if (isset($_POST['deleteAccount'])) {
     $hapusUserTable = mysqli_query($conn, "DELETE FROM data_user WHERE id_user='$idHapus'");
 
     if ($hapusUserTable) {
-        echo "Data User BERHASIL di HAPUS";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Akun Berhasil di HAPUS!!!</strong>
+            </div>";
     } else {
-        echo "Data User GAGAL di HAPUS";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Akun Gagal di HAPUS!!!</strong>
+            </div>";
     }
 }
 
@@ -71,9 +89,15 @@ if (isset($_POST['addNewSupplier'])) {
     $addToSupplierTable = mysqli_query($conn, "INSERT INTO data_supplier (id_supplier, nama_supplier, alamat_supplier, telp_supplier) VALUES ('$idSupplier', '$namaSupplier', '$alamatSupplier', '$telpSupplier')");
 
     if ($addToSupplierTable) {
-        echo "Data Supplier BERHASIL di Tambahkan";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong> Data Supplier Berhasil di TAMBAH!!!</strong> 
+            </div>";
     } else {
-        echo "Data Supplier GAGAL di Tambahkan";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong> Data Supplier Gagal di TAMBAH!!!</strong> 
+            </div>";
     }
 }
 
@@ -87,9 +111,15 @@ if (isset($_POST['editSupplier'])) {
     $editSupplierTable = mysqli_query($conn, "UPDATE data_supplier SET nama_supplier='$namaSupplier', alamat_supplier='$alamatSupplier', telp_supplier='$telpSupplier' WHERE id_supplier='$idSupplier'");
 
     if ($editSupplierTable) {
-        echo "Data Supplier BERHASIL di EDIT";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                Data Supplier <strong>$namaSupplier</strong> Berhasil di EDIT!!!
+            </div>";
     } else {
-        echo "Data Supplier GAGAL di EDIT";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                Data Supplier <strong>$namaSupplier</strong> Gagal di EDIT!!!
+            </div>";
     }
 }
 
@@ -100,9 +130,15 @@ if (isset($_POST['deleteSupplier'])) {
     $hapusSupplierTable = mysqli_query($conn, "DELETE FROM data_supplier WHERE id_supplier='$idHapus'");
 
     if ($hapusSupplierTable) {
-        echo "Data Supplier BERHASIL di HAPUS";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Stock Berhasil di HAPUS!!!</strong>
+            </div>";
     } else {
-        echo "Data Supplier GAGAL di HAPUS";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Supplier Gagal di HAPUS!!!</strong>
+            </div>";
     }
 }
 
@@ -117,9 +153,15 @@ if (isset($_POST['addNewCustomer'])) {
     $addToCustomerTable = mysqli_query($conn, "INSERT INTO data_customer (id_customer, nama_customer, alamat_customer, telp_customer) VALUES ('$idCustomer', '$namaCustomer', '$alamatCustomer', '$telpCustomer')");
 
     if ($addToCustomerTable) {
-        echo "Data Supplier BERHASIL di Tambahkan";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong> Data Customer Berhasil di TAMBAH!!!</strong>
+            </div>";
     } else {
-        echo "Data Supplier GAGAL di Tambahkan";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong> Data Customer Gagal di TAMBAH!!!</strong>
+            </div>";
     }
 }
 
@@ -133,9 +175,15 @@ if (isset($_POST['editCustomer'])) {
     $editCustomerTable = mysqli_query($conn, "UPDATE data_customer SET nama_customer='$namaCustomer', alamat_customer='$alamatCustomer', telp_customer='$telpCustomer' WHERE id_customer='$idCustomer'");
 
     if ($editCustomerTable) {
-        echo "Data Customer BERHASIL di EDIT";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                Data Customer <strong>$namaCustomer</strong> Berhasil di EDIT!!!
+            </div>";
     } else {
-        echo "Data Customer GAGAL di EDIT";
+        echo "Data Customer G<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                Data Customer <strong>$namaCustomer</strong> Gagal di EDIT!!!
+            </div>";
     }
 }
 
@@ -146,9 +194,15 @@ if (isset($_POST['deleteCustomer'])) {
     $hapusCustomerTable = mysqli_query($conn, "DELETE FROM data_customer WHERE id_customer='$idHapus'");
 
     if ($hapusCustomerTable) {
-        echo "Data Customer BERHASIL di HAPUS";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Customer Berhasil di HAPUS!!!</strong>
+            </div>";
     } else {
-        echo "Data Customer GAGAL di HAPUS";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Customer Gagal di HAPUS!!!</strong>
+            </div>";
     }
 }
 
@@ -165,9 +219,15 @@ if (isset($_POST['addNewStock'])) {
     $addToStockTable = mysqli_query($conn, "INSERT INTO data_stock (id_barang, nama_barang, kategori, qty, harga, total_harga, status) VALUES ('$idBarang', '$namaBarang', '$kategoriBarang', '$jumlahBarang', '$hargaSatuan', '$totalHarga', '$statusBarang')");
 
     if ($addToStockTable) {
-        echo "Data Stock BERHASIL di Tambahkan";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Stock Berhasil di TAMBAH!!!</strong>
+            </div>";
     } else {
-        echo "Data Stock GAGAL di Tambahkan";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Stock Gagal di TAMBAH!!!</strong>
+            </div>";
     }
 }
 
@@ -190,9 +250,15 @@ if (isset($_POST['editStock'])) {
     $editStockTable = mysqli_query($conn, "UPDATE data_stock SET id_barang='$idBarang', nama_barang='$namaBarang', kategori='$kategoriBarang', qty='$jumlahBarang', harga='$hargaSatuan', total_harga = '$totalHarga', status='$statusBarang' WHERE id_barang='$idBarang'");
 
     if ($editStockTable) {
-        echo "Data Stock BERHASIL di Tambahkan";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                Data Stock <strong>$namaBarang</strong> Berhasil di EDIT!!!
+            </div>";
     } else {
-        echo "Data Stock GAGAL di Tambahkan";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                Data Stock <strong>$namaBarang</strong> Gagal di EDIT!!!
+            </div>";
     }
 }
 
@@ -203,9 +269,15 @@ if (isset($_POST['deleteStock'])) {
     $hapusSupplierTable = mysqli_query($conn, "DELETE FROM data_stock WHERE id_barang='$idHapus'");
 
     if ($hapusSupplierTable) {
-        echo "Data Stock BERHASIL di HAPUS";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Stock Berhasil di HAPUS!!!</strong>
+            </div>";
     } else {
-        echo "Data Stock GAGAL di HAPUS";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Stock Gagal di HAPUS!!!</strong>
+            </div>";
     }
 }
 
@@ -234,9 +306,15 @@ if (isset($_POST['addIncomingGoods'])) {
         $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET qty='$stockBaru', total_harga='$totalHargaBaru', status= 'tersedia' WHERE id_barang = '$idBarangMasuk'");
 
         if ($addToIncomingTable) {
-            echo "Data Barang Masuk BERHASIL di Tambahkan";
+            echo "<div class='alert alert-success alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    <strong>Data Barang Masuk Berhasil di TAMBAH!!!</strong>
+                </div>";
         } else {
-            echo "Data Barang Masuk GAGAL di Tambahkan";
+            echo "<div class='alert alert-danger alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    <strong>Data Barang Masuk Gagal di TAMBAH!!!</strong>
+                </div>";
         }
     }
 }
@@ -260,6 +338,7 @@ if (isset($_POST['editIncomingGoods'])) {
     $cekStockSekarang = mysqli_query($conn, "SELECT * FROM data_stock WHERE id_barang='$idBarangMasuk'");
     $ambilDataStock = mysqli_fetch_array($cekStockSekarang);
     $idStockBarang = $ambilDataStock['id_barang'];
+    $namaBarangMasuk = $ambilDataStock['nama_barang'];
     $jumlahTotalStock = $ambilDataStock['qty'];
     $totalHargaStock = $ambilDataStock['total_harga'];
 
@@ -272,9 +351,15 @@ if (isset($_POST['editIncomingGoods'])) {
         $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET qty='$stockBaru', total_harga='$totalHargaBaru',status= 'tersedia' WHERE id_barang = '$idBarangMasuk'");
 
         if ($addToIncomingTable) {
-            echo "Data Barang Masuk BERHASIL di EDIT";
+            echo "<div class='alert alert-success alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    Data Barang Masuk <strong>$namaBarangMasuk</strong> Berhasil di EDIT!!!
+                </div>";
         } else {
-            echo "Data Barang Masuk GAGAL di EDIT";
+            echo "<div class='alert alert-danger alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    Data Barang Masuk <strong>$namaBarangMasuk</strong> Gagal di EDIT!!!
+                </div>";
         }
     }
 }
@@ -302,9 +387,15 @@ if (isset($_POST['deleteIncoming'])) {
     $hapusUserTable = mysqli_query($conn, "DELETE FROM data_barang_masuk WHERE id_masuk='$idHapus'");
 
     if ($hapusUserTable& $updateStockBarang) {
-        echo "Data Barang Masuk BERHASIL di HAPUS";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Barang Masuk Berhasil di HAPUS!!!</strong>
+            </div>";
     } else {
-        echo "Data Barang Masuk GAGAL di HAPUS";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Barang Masuk Gagal di TAMBAH!!!</strong>
+            </div>";
     }
 }
 
@@ -338,12 +429,21 @@ if (isset($_POST['addOutcomingGoods'])) {
         $addToOutcomingTable = mysqli_query($conn, "INSERT INTO data_barang_keluar (tanggal, id_barang, qty_keluar, harga, total_harga, id_customer, keterangan) VALUES ('$tanggalBarangKeluar', '$idBarangKeluar', '$jumlahBarangKeluar', '$hargaSatuan', '$totalHarga', '$idCustomer', '$keterangan')");
 
         if ($addToOutcomingTable) {
-            echo "Data Barang Keluar BERHASIL di Tambahkan";
+            echo "<div class='alert alert-success alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    <strong>Data Barang Keluar Berhasil di TAMBAH!!!</strong>
+                </div>";
         } else {
-            echo "Data Barang Keluar GAGAL di Tambahkan";
+            echo "<div class='alert alert-danger alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    <strong>Data Barang Keluar Gagal di TAMBAH!!!</strong>
+                </div>";
         }
     } else {
-        header('location:404.php');
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Tidak Valid!!! (Jumlah Stock < Jumlah Barang Keluar)</strong>
+            </div>";
     }
 }
 
@@ -366,6 +466,7 @@ if (isset($_POST['editOutcomingGoods'])) {
     $cekStockSekarang = mysqli_query($conn, "SELECT * FROM data_stock WHERE id_barang='$idBarangKeluar'");
     $ambilDataStock = mysqli_fetch_array($cekStockSekarang);
     $idStockBarang = $ambilDataStock['id_barang'];
+    $namaBarangKeluar = $ambilDataStock['nama_barang'];
     $jumlahTotalStock = $ambilDataStock['qty'];
     $totalHargaStock = $ambilDataStock['total_harga'];
 
@@ -378,9 +479,15 @@ if (isset($_POST['editOutcomingGoods'])) {
         $addToStockTable = mysqli_query($conn, "UPDATE data_stock SET qty='$stockBaru', status= 'tersedia', total_harga='$totalHargaBaru' WHERE id_barang = '$idBarangKeluar'");
 
         if ($addToOutcomingTable) {
-            echo "Data Barang Keluar BERHASIL di EDIT";
+            echo "<div class='alert alert-success alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    Data Barang Keluar <strong>$namaBarangKeluar</strong> Berhasil di EDIT!!!
+                </div>";
         } else {
-            echo "Data Barang Keluar GAGAL di EDIT";
+            echo "<div class='alert alert-danger alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    Data Barang Keluar <strong>$namaBarangKeluar</strong> Gagal di EDIT!!!
+                </div>";
         }
     }
 }
@@ -405,9 +512,15 @@ if (isset($_POST['deleteOutcoming'])) {
     $hapusUserTable = mysqli_query($conn, "DELETE FROM data_barang_keluar WHERE id_keluar='$idHapus'");
 
     if ($hapusUserTable& $updateStockBarang) {
-        echo "Data Barang Keluar BERHASIL di HAPUS";
+        echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Barang Keluar Berhasil di HAPUS!!!</strong>
+            </div>";
     } else {
-        echo "Data Barang Keluar GAGAL di HAPUS";
+        echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <strong>Data Barang Keluar Gagal di HAPUS!!!</strong>
+            </div>";
     }
 }
 

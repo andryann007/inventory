@@ -67,9 +67,7 @@ $alamatCustomer = $fetchArray['alamat_customer'];
           class="sidebar-brand d-flex align-items-center justify-content-center"
           href="index.php"
         >
-          <div class="sidebar-brand-icon">
-            <i class="fas fa-store"></i>
-          </div>
+          <img src="img/logo.png" style="width: 25%" />
           <div class="sidebar-brand-text mx-2">Toko Sukses</div>
         </a>
 
@@ -506,64 +504,64 @@ $alamatCustomer = $fetchArray['alamat_customer'];
                 </div>
               </div>
 
-              <div class = "container">
-                
-              <div class="row">
-                      <div class="col-md-2 col-2">
-                        <strong class="margin-10px-left text-orange">
-                          ID Customer</strong
-                        >
-                      </div>
-                      <div class="col-md-3 col-3">
-                        <p>
-                          : <?= $idCustomer; ?>
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-2 col-2">
-                        <strong class="margin-10px-left text-orange">
-                          Nama Lengkap</strong
-                        >
-                      </div>
-                      <div class="col-md-3 col-3">
-                        <p>
-                          : <?= ucwords($namaCustomer); ?>
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-2 col-2">
-                        <strong class="margin-10px-left text-yellow">
-                          Alamat</strong
-                        >
-                      </div>
-                      <div class="col-md-3 col-3">
-                        <p>
-                          : <?= $alamatCustomer; ?>
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                    <div class="col-md-2 col-2">
-                        <strong class="margin-10px-left text-lightred">
-                          No. Telp</strong
-                        >
-                      </div>
-                      <div class="col-md-3 col-3">
-                        <p>
-                          : <?= $telpCustomer; ?>
-                        </p>
-                      </div>
-                    </div>
-            
-              </div>
-
-                    
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-2 col-2">
+                    <strong class="margin-10px-left text-orange">
+                      ID Customer</strong
+                    >
                   </div>
+                  <div class="col-md-3 col-3">
+                    <p>
+                      :
+                      <?= $idCustomer; ?>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2 col-2">
+                    <strong class="margin-10px-left text-orange">
+                      Nama Lengkap</strong
+                    >
+                  </div>
+                  <div class="col-md-3 col-3">
+                    <p>
+                      :
+                      <?= ucwords($namaCustomer); ?>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2 col-2">
+                    <strong class="margin-10px-left text-yellow">
+                      Alamat</strong
+                    >
+                  </div>
+                  <div class="col-md-3 col-3">
+                    <p>
+                      :
+                      <?= $alamatCustomer; ?>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2 col-2">
+                    <strong class="margin-10px-left text-lightred">
+                      No. Telp</strong
+                    >
+                  </div>
+                  <div class="col-md-3 col-3">
+                    <p>
+                      :
+                      <?= $telpCustomer; ?>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- /.container-fluid -->
           <div class="card shadow mb-4 m-3">
@@ -600,209 +598,209 @@ $alamatCustomer = $fetchArray['alamat_customer'];
                       $alamat = $data['alamat_customer'];
                       $telp = $data['telp_customer'];
                       ?>
-                                                              <tr>
-                                                                <td>
-                                                                  <?= $i++; ?>
-                                                                </td>
-                                                                <td>
-                                                                  <?= $idCustomer; ?>
-                                                                </td>
-                                                                <td>
-                                                                  <?= ucwords($namaLengkap); ?>
-                                                                </td>
-                                                                <td>
-                                                                  <?= $alamat; ?>
-                                                                </td>
-                                                                <td>
-                                                                  <?= $telp; ?>
-                                                                </td>
-                                                                <td
-                                                                  class="d-sm-flex justify-content-around align-items-center"
-                                                                >
-                                                                  <a
-                                                                    href="detail_customer.php?id=<?= $idCustomer ?>"
-                                                                    class="btn btn-primary"
-                                                                    role="button"
-                                                                    ><i class="fas fa-info"></i> Detail</a
-                                                                  >
+                    <tr>
+                      <td>
+                        <?= $i++; ?>
+                      </td>
+                      <td>
+                        <?= $idCustomer; ?>
+                      </td>
+                      <td>
+                        <?= ucwords($namaLengkap); ?>
+                      </td>
+                      <td>
+                        <?= $alamat; ?>
+                      </td>
+                      <td>
+                        <?= $telp; ?>
+                      </td>
+                      <td
+                        class="d-sm-flex justify-content-around align-items-center"
+                      >
+                        <a
+                          href="detail_customer.php?id=<?= $idCustomer ?>"
+                          class="btn btn-primary"
+                          role="button"
+                          ><i class="fas fa-info"></i> Detail</a
+                        >
 
-                                                                  <button
-                                                                    type="button"
-                                                                    class="btn btn-warning"
-                                                                    data-toggle="modal"
-                                                                    data-target="#editCustomerModal<?= $idCustomer; ?>"
-                                                                  >
-                                                                    <i class="fas fa-edit"></i> Edit
-                                                                  </button>
-                                                                  <input
-                                                                    type="hidden"
-                                                                    name="idHapus"
-                                                                    value="<?= $idCustomer; ?>"
-                                                                  />
-                                                                  <button
-                                                                    type="button"
-                                                                    class="btn btn-danger"
-                                                                    data-toggle="modal"
-                                                                    data-target="#deleteCustomerModal<?= $idCustomer; ?>"
-                                                                  >
-                                                                    <i class="fas fa-trash"></i> Delete
-                                                                  </button>
-                                                                </td>
-                                                              </tr>
+                        <button
+                          type="button"
+                          class="btn btn-warning"
+                          data-toggle="modal"
+                          data-target="#editCustomerModal<?= $idCustomer; ?>"
+                        >
+                          <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <input
+                          type="hidden"
+                          name="idHapus"
+                          value="<?= $idCustomer; ?>"
+                        />
+                        <button
+                          type="button"
+                          class="btn btn-danger"
+                          data-toggle="modal"
+                          data-target="#deleteCustomerModal<?= $idCustomer; ?>"
+                        >
+                          <i class="fas fa-trash"></i> Delete
+                        </button>
+                      </td>
+                    </tr>
 
-                                                              <!-- Edit Data Modal -->
-                                                              <div
-                                                                class="modal fade"
-                                                                tabindex="-1"
-                                                                aria-labelledby="editModalLabel"
-                                                                aria-hidden="true"
-                                                                id="editCustomertModal<?= $idCustomer; ?>"
-                                                              >
-                                                                <div class="modal-dialog modal-dialog-centered">
-                                                                  <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                      <h5 class="modal-title" id="editModalLabel">
-                                                                        Edit Data Customer
-                                                                      </h5>
-                                                                      <button
-                                                                        type="button"
-                                                                        class="close"
-                                                                        data-dismiss="modal"
-                                                                        aria-label="Close"
-                                                                      >
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                      </button>
-                                                                    </div>
-                                                                    <form method="post">
-                                                                      <div class="modal-body">
-                                                                        <input
-                                                                          type="hidden"
-                                                                          name="idCustomer"
-                                                                          value="<?= $idCustomer; ?>"
-                                                                        />
+                    <!-- Edit Data Modal -->
+                    <div
+                      class="modal fade"
+                      tabindex="-1"
+                      aria-labelledby="editModalLabel"
+                      aria-hidden="true"
+                      id="editCustomertModal<?= $idCustomer; ?>"
+                    >
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">
+                              Edit Data Customer
+                            </h5>
+                            <button
+                              type="button"
+                              class="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form method="post">
+                            <div class="modal-body">
+                              <input
+                                type="hidden"
+                                name="idCustomer"
+                                value="<?= $idCustomer; ?>"
+                              />
 
-                                                                        <div class="form-group">
-                                                                          <label for="idCustomer">ID Customer</label>
-                                                                          <input
-                                                                            type="text"
-                                                                            name="idCustomer"
-                                                                            id="idCustomer"
-                                                                            value="<?= $idCustomer; ?>"
-                                                                            class="form-control"
-                                                                            required
-                                                                          />
-                                                                        </div>
+                              <div class="form-group">
+                                <label for="idCustomer">ID Customer</label>
+                                <input
+                                  type="text"
+                                  name="idCustomer"
+                                  id="idCustomer"
+                                  value="<?= $idCustomer; ?>"
+                                  class="form-control"
+                                  required
+                                />
+                              </div>
 
-                                                                        <div class="form-group">
-                                                                          <label for="namaCustomer">Nama Lengkap</label>
-                                                                          <input
-                                                                            type="text"
-                                                                            name="namaCustomer"
-                                                                            id="namaCustomer"
-                                                                            value="<?= $namaLengkap; ?>"
-                                                                            class="form-control"
-                                                                            required
-                                                                          />
-                                                                        </div>
+                              <div class="form-group">
+                                <label for="namaCustomer">Nama Lengkap</label>
+                                <input
+                                  type="text"
+                                  name="namaCustomer"
+                                  id="namaCustomer"
+                                  value="<?= $namaLengkap; ?>"
+                                  class="form-control"
+                                  required
+                                />
+                              </div>
 
-                                                                        <div class="form-group">
-                                                                          <label for="alamatCustomer">Alamat</label>
-                                                                          <input
-                                                                            type="text"
-                                                                            name="alamatCustomer"
-                                                                            id="alamatCustomer"
-                                                                            value="<?= $alamat; ?>"
-                                                                            class="form-control"
-                                                                            required
-                                                                          />
-                                                                        </div>
+                              <div class="form-group">
+                                <label for="alamatCustomer">Alamat</label>
+                                <input
+                                  type="text"
+                                  name="alamatCustomer"
+                                  id="alamatCustomer"
+                                  value="<?= $alamat; ?>"
+                                  class="form-control"
+                                  required
+                                />
+                              </div>
 
-                                                                        <div class="form-group">
-                                                                          <label for="telpCustomer">No. Telp</label>
-                                                                          <input
-                                                                            type="number"
-                                                                            name="telpCustomer"
-                                                                            id="telpCustomer"
-                                                                            value="<?= $telp; ?>"
-                                                                            class="form-control"
-                                                                            required
-                                                                          />
-                                                                        </div>
-                                                                      </div>
+                              <div class="form-group">
+                                <label for="telpCustomer">No. Telp</label>
+                                <input
+                                  type="number"
+                                  name="telpCustomer"
+                                  id="telpCustomer"
+                                  value="<?= $telp; ?>"
+                                  class="form-control"
+                                  required
+                                />
+                              </div>
+                            </div>
 
-                                                                      <div class="d-sm-flex modal-footer mb-4">
-                                                                        <button
-                                                                          type="button"
-                                                                          class="btn btn-danger"
-                                                                          data-dismiss="modal"
-                                                                        >
-                                                                          <i class="fas fa-trash"></i> Batal
-                                                                        </button>
-                                                                        <button
-                                                                          type=" submit"
-                                                                          class="btn btn-warning"
-                                                                          name="editCustomer"
-                                                                        >
-                                                                          <i class="fas fa-edit"></i> Edit
-                                                                        </button>
-                                                                      </div>
-                                                                    </form>
-                                                                  </div>
-                                                                </div>
-                                                              </div>
+                            <div class="d-sm-flex modal-footer mb-4">
+                              <button
+                                type="button"
+                                class="btn btn-danger"
+                                data-dismiss="modal"
+                              >
+                                <i class="fas fa-trash"></i> Batal
+                              </button>
+                              <button
+                                type=" submit"
+                                class="btn btn-warning"
+                                name="editCustomer"
+                              >
+                                <i class="fas fa-edit"></i> Edit
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
 
-                                                              <!-- Delete Data Modal -->
-                                                              <div
-                                                                class="modal fade"
-                                                                tabindex="-1"
-                                                                aria-labelledby="deleteModalLabel"
-                                                                aria-hidden="true"
-                                                                id="deleteCustomerModal<?= $idCustomer; ?>"
-                                                              >
-                                                                <div class="modal-dialog modal-dialog-centered">
-                                                                  <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                      <h5 class="modal-title" id="deleteModalLabel">
-                                                                        Hapus Customer ?
-                                                                      </h5>
-                                                                      <button
-                                                                        type="button"
-                                                                        class="close"
-                                                                        data-dismiss="modal"
-                                                                        aria-label="Close"
-                                                                      >
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                      </button>
-                                                                    </div>
-                                                                    <form method="post">
-                                                                      <div class="modal-body text-center">
-                                                                        Apakah anda yakin ingin menghapus customer
-                                                                        <b>
-                                                                          <?= $namaLengkap ?>
-                                                                        </b>
-                                                                        ?
-                                                                      </div>
-                                                                      <input
-                                                                        type="hidden"
-                                                                        name="idHapus"
-                                                                        value="<?= $idCustomer; ?>"
-                                                                      />
+                    <!-- Delete Data Modal -->
+                    <div
+                      class="modal fade"
+                      tabindex="-1"
+                      aria-labelledby="deleteModalLabel"
+                      aria-hidden="true"
+                      id="deleteCustomerModal<?= $idCustomer; ?>"
+                    >
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">
+                              Hapus Customer ?
+                            </h5>
+                            <button
+                              type="button"
+                              class="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form method="post">
+                            <div class="modal-body text-center">
+                              Apakah anda yakin ingin menghapus customer
+                              <b>
+                                <?= $namaLengkap ?>
+                              </b>
+                              ?
+                            </div>
+                            <input
+                              type="hidden"
+                              name="idHapus"
+                              value="<?= $idCustomer; ?>"
+                            />
 
-                                                                      <div class="d-sm-flex modal-footer mb-4">
-                                                                        <button
-                                                                          type=" submit"
-                                                                          class="btn btn-danger"
-                                                                          name="deleteCustomer"
-                                                                        >
-                                                                          <i class="fas fa-trash"></i> Hapus
-                                                                        </button>
-                                                                      </div>
-                                                                    </form>
-                                                                  </div>
-                                                                </div>
-                                                              </div>
+                            <div class="d-sm-flex modal-footer mb-4">
+                              <button
+                                type=" submit"
+                                class="btn btn-danger"
+                                name="deleteCustomer"
+                              >
+                                <i class="fas fa-trash"></i> Hapus
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
 
-                                                              <?php
+                    <?php
 
                     }
                     ?>
