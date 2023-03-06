@@ -133,17 +133,9 @@ include 'check.php';
         <!-- Heading -->
         <div class="sidebar-heading">Laporan</div>
 
-        <!-- Nav Item - Laporan Stok Barang -->
-        <li class="nav-item">
-          <a class="nav-link" href="">
-            <i class="fas fa-file-invoice"></i>
-            <span>Laporan Stock Inventory</span></a
-          >
-        </li>
-
         <!-- Nav Item - Laporan Barang Masuk -->
         <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="laporan_masuk.php">
             <i class="fas fa-file-invoice"></i>
             <span>Laporan Barang Masuk</span></a
           >
@@ -151,7 +143,7 @@ include 'check.php';
 
         <!-- Nav Item - Laporan Barang Keluar -->
         <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="laporan_keluar.php">
             <i class="fas fa-file-invoice"></i>
             <span>Laporan Barang Keluar</span></a
           >
@@ -424,218 +416,218 @@ include 'check.php';
                         $alamatCustomer = $data['alamat_customer'];
                         $telpCustomer = $data['telp_customer'];
                         ?>
-                      <tr>
-                        <td>
-                          <?= $i++; ?>
-                        </td>
-                        <td>
-                          <?= $idCustomer; ?>
-                        </td>
-                        <td>
-                          <?= $namaCustomer; ?>
-                        </td>
-                        <td>
-                          <?= $alamatCustomer; ?>
-                        </td>
-                        <td>
-                          <?= $telpCustomer; ?>
-                        </td>
-                        <td
-                          class="d-sm-flex justify-content-around align-items-center"
-                        >
-                          <a
-                            href="detail_customer.php?id=<?= $idCustomer ?>"
-                            class="btn btn-primary"
-                            role="button"
-                            ><i class="fas fa-info"></i> Detail</a
-                          >
+                          <tr>
+                            <td>
+                              <?= $i++; ?>
+                            </td>
+                            <td>
+                              <?= $idCustomer; ?>
+                            </td>
+                            <td>
+                              <?= $namaCustomer; ?>
+                            </td>
+                            <td>
+                              <?= $alamatCustomer; ?>
+                            </td>
+                            <td>
+                              <?= $telpCustomer; ?>
+                            </td>
+                            <td
+                              class="d-sm-flex justify-content-around align-items-center"
+                            >
+                              <a
+                                href="detail_customer.php?id=<?= $idCustomer ?>"
+                                class="btn btn-primary"
+                                role="button"
+                                ><i class="fas fa-info"></i> Detail</a
+                              >
 
-                          <button
-                            type="button"
-                            class="btn btn-warning"
-                            data-toggle="modal"
-                            data-target="#editCustomerModal<?= $idCustomer ?>"
-                          >
-                            <i class="fas fa-edit"></i> Edit
-                          </button>
-                          <input
-                            type="hidden"
-                            name="idHapus"
-                            value="<?= $idCustomer; ?>"
-                          />
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            data-toggle="modal"
-                            data-target="#deleteCustomerModal<?= $idCustomer ?>"
-                          >
-                            <i class="fas fa-trash"></i> Delete
-                          </button>
-                        </td>
-                      </tr>
-
-                      <!-- Edit Data Modal -->
-                      <div
-                        class="modal fade"
-                        id="editCustomerModal<?= $idCustomer ?>"
-                        tabindex="-1"
-                        aria-labelledby="addModalLabel"
-                        aria-hidden="true"
-                      >
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="addModalLabel">
-                                Edit Data Customer
-                              </h5>
                               <button
                                 type="button"
-                                class="close"
-                                data-dismiss="modal"
-                                aria-label="Close"
+                                class="btn btn-warning"
+                                data-toggle="modal"
+                                data-target="#editCustomerModal<?= $idCustomer ?>"
                               >
-                                <span aria-hidden="true">&times;</span>
+                                <i class="fas fa-edit"></i> Edit
                               </button>
-                            </div>
-                            <form method="post">
-                              <div class="modal-body">
-                                <input
-                                  type="hidden"
-                                  name="idCustomer"
-                                  value="<?= $idCustomer; ?>"
-                                />
-
-                                <div class="form-group">
-                                  <label for="idCustomer">ID Customer</label>
-                                  <input
-                                    type="text"
-                                    name="idCustomer"
-                                    id="idCustomer"
-                                    value="<?= $idCustomer; ?>"
-                                    class="form-control"
-                                    required
-                                  />
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="namaCustomer"
-                                    >Nama Customer</label
-                                  >
-                                  <input
-                                    type="text"
-                                    name="namaCustomer"
-                                    id="namaCustomer"
-                                    value="<?= $namaCustomer; ?>"
-                                    class="form-control"
-                                    required
-                                  />
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="alamatCustomer"
-                                    >Alamat Customer</label
-                                  >
-                                  <input
-                                    type="text"
-                                    name="alamatCustomer"
-                                    id="alamatCustomer"
-                                    value="<?= $alamatCustomer; ?>"
-                                    class="form-control"
-                                    required
-                                  />
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="telpCustomer"
-                                    >Telp. Customer</label
-                                  >
-                                  <input
-                                    type="number"
-                                    name="telpCustomer"
-                                    id="telpCustomer"
-                                    placeholder="<?= $telpCustomer; ?>"
-                                    value="<?= $telpCustomer; ?>"
-                                    class="form-control"
-                                    required
-                                  />
-                                </div>
-                              </div>
-
-                              <div
-                                class="d-sm-flex modal-footer justify-content-between mb-4"
-                              >
-                                <button
-                                  type="button"
-                                  class="btn btn-danger"
-                                  data-dismiss="modal"
-                                >
-                                  <i class="fas fa-trash"></i> Batal
-                                </button>
-                                <button
-                                  type="submit"
-                                  class="btn btn-primary"
-                                  name="editCustomer"
-                                >
-                                  <i class="fas fa-plus"></i> Tambah
-                                </button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Delete Data Modal -->
-                      <div
-                        class="modal fade"
-                        tabindex="-1"
-                        aria-labelledby="deleteModalLabel"
-                        aria-hidden="true"
-                        id="deleteCustomerModal<?= $idCustomer; ?>"
-                      >
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="deleteModalLabel">
-                                Hapus Customer ?
-                              </h5>
-                              <button
-                                type="button"
-                                class="close"
-                                data-dismiss="modal"
-                                aria-label="Close"
-                              >
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <form method="post">
-                              <div class="modal-body text-center">
-                                Apakah anda yakin ingin menghapus Customer
-                                <b>
-                                  <?= $namaCustomer ?>
-                                </b>
-                                ?
-                              </div>
                               <input
                                 type="hidden"
                                 name="idHapus"
                                 value="<?= $idCustomer; ?>"
                               />
+                              <button
+                                type="button"
+                                class="btn btn-danger"
+                                data-toggle="modal"
+                                data-target="#deleteCustomerModal<?= $idCustomer ?>"
+                              >
+                                <i class="fas fa-trash"></i> Delete
+                              </button>
+                            </td>
+                          </tr>
 
-                              <div class="d-sm-flex modal-footer mb-4">
-                                <button
-                                  type=" submit"
-                                  class="btn btn-danger"
-                                  name="deleteCustomer"
-                                >
-                                  <i class="fas fa-trash"></i> Hapus
-                                </button>
+                          <!-- Edit Data Modal -->
+                          <div
+                            class="modal fade"
+                            id="editCustomerModal<?= $idCustomer ?>"
+                            tabindex="-1"
+                            aria-labelledby="addModalLabel"
+                            aria-hidden="true"
+                          >
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="addModalLabel">
+                                    Edit Data Customer
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                  >
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <form method="post">
+                                  <div class="modal-body">
+                                    <input
+                                      type="hidden"
+                                      name="idCustomer"
+                                      value="<?= $idCustomer; ?>"
+                                    />
+
+                                    <div class="form-group">
+                                      <label for="idCustomer">ID Customer</label>
+                                      <input
+                                        type="text"
+                                        name="idCustomer"
+                                        id="idCustomer"
+                                        value="<?= $idCustomer; ?>"
+                                        class="form-control"
+                                        required
+                                      />
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="namaCustomer"
+                                        >Nama Customer</label
+                                      >
+                                      <input
+                                        type="text"
+                                        name="namaCustomer"
+                                        id="namaCustomer"
+                                        value="<?= $namaCustomer; ?>"
+                                        class="form-control"
+                                        required
+                                      />
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="alamatCustomer"
+                                        >Alamat Customer</label
+                                      >
+                                      <input
+                                        type="text"
+                                        name="alamatCustomer"
+                                        id="alamatCustomer"
+                                        value="<?= $alamatCustomer; ?>"
+                                        class="form-control"
+                                        required
+                                      />
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="telpCustomer"
+                                        >Telp. Customer</label
+                                      >
+                                      <input
+                                        type="number"
+                                        name="telpCustomer"
+                                        id="telpCustomer"
+                                        placeholder="<?= $telpCustomer; ?>"
+                                        value="<?= $telpCustomer; ?>"
+                                        class="form-control"
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div
+                                    class="d-sm-flex modal-footer justify-content-between mb-4"
+                                  >
+                                    <button
+                                      type="button"
+                                      class="btn btn-danger"
+                                      data-dismiss="modal"
+                                    >
+                                      <i class="fas fa-trash"></i> Batal
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="btn btn-primary"
+                                      name="editCustomer"
+                                    >
+                                      <i class="fas fa-plus"></i> Tambah
+                                    </button>
+                                  </div>
+                                </form>
                               </div>
-                            </form>
+                            </div>
                           </div>
-                        </div>
-                      </div>
 
-                      <?php
+                          <!-- Delete Data Modal -->
+                          <div
+                            class="modal fade"
+                            tabindex="-1"
+                            aria-labelledby="deleteModalLabel"
+                            aria-hidden="true"
+                            id="deleteCustomerModal<?= $idCustomer; ?>"
+                          >
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="deleteModalLabel">
+                                    Hapus Customer ?
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                  >
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <form method="post">
+                                  <div class="modal-body text-center">
+                                    Apakah anda yakin ingin menghapus Customer
+                                    <b>
+                                      <?= $namaCustomer ?>
+                                    </b>
+                                    ?
+                                  </div>
+                                  <input
+                                    type="hidden"
+                                    name="idHapus"
+                                    value="<?= $idCustomer; ?>"
+                                  />
+
+                                  <div class="d-sm-flex modal-footer mb-4">
+                                    <button
+                                      type=" submit"
+                                      class="btn btn-danger"
+                                      name="deleteCustomer"
+                                    >
+                                      <i class="fas fa-trash"></i> Hapus
+                                    </button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+
+                          <?php
                       }
                       ?>
                     </tbody>

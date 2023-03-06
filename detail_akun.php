@@ -148,17 +148,9 @@ $fotoProfil = $fetchArray['foto_profil'];
         <!-- Heading -->
         <div class="sidebar-heading">Laporan</div>
 
-        <!-- Nav Item - Laporan Stok Barang -->
-        <li class="nav-item">
-          <a class="nav-link" href="">
-            <i class="fas fa-file-invoice"></i>
-            <span>Laporan Stock Inventory</span></a
-          >
-        </li>
-
         <!-- Nav Item - Laporan Barang Masuk -->
         <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="laporan_masuk.php">
             <i class="fas fa-file-invoice"></i>
             <span>Laporan Barang Masuk</span></a
           >
@@ -166,7 +158,7 @@ $fotoProfil = $fetchArray['foto_profil'];
 
         <!-- Nav Item - Laporan Barang Keluar -->
         <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="laporan_keluar.php">
             <i class="fas fa-file-invoice"></i>
             <span>Laporan Barang Keluar</span></a
           >
@@ -670,246 +662,246 @@ $fotoProfil = $fetchArray['foto_profil'];
                       $tipeAkun = $data['tipe_akun'];
                       $alamat = $data['alamat'];
                       ?>
-                    <tr>
-                      <td>
-                        <?= $i++; ?>
-                      </td>
-                      <td>
-                        <?= ucwords($namaLengkap); ?>
-                      </td>
-                      <td>
-                        <?= $username; ?>
-                      </td>
-                      <td>
-                        <?= $email; ?>
-                      </td>
-                      <td>
-                        <?= ucwords($tipeAkun); ?>
-                      </td>
-                      <td
-                        class="d-sm-flex justify-content-around align-items-center"
-                      >
-                        <a
-                          href="detail_akun.php?id=<?= $idUser ?>"
-                          class="btn btn-primary"
-                          role="button"
-                          ><i class="fas fa-info"></i> Detail</a
-                        >
+                        <tr>
+                          <td>
+                            <?= $i++; ?>
+                          </td>
+                          <td>
+                            <?= ucwords($namaLengkap); ?>
+                          </td>
+                          <td>
+                            <?= $username; ?>
+                          </td>
+                          <td>
+                            <?= $email; ?>
+                          </td>
+                          <td>
+                            <?= ucwords($tipeAkun); ?>
+                          </td>
+                          <td
+                            class="d-sm-flex justify-content-around align-items-center"
+                          >
+                            <a
+                              href="detail_akun.php?id=<?= $idUser ?>"
+                              class="btn btn-primary"
+                              role="button"
+                              ><i class="fas fa-info"></i> Detail</a
+                            >
 
-                        <button
-                          type="button"
-                          class="btn btn-warning"
-                          data-toggle="modal"
-                          data-target="#editAccountModal<?= $idUser; ?>"
-                        >
-                          <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <input
-                          type="hidden"
-                          name="idHapus"
-                          value="<?= $idUser; ?>"
-                        />
-                        <button
-                          type="button"
-                          class="btn btn-danger"
-                          data-toggle="modal"
-                          data-target="#deleteAccountModal<?= $idUser; ?>"
-                        >
-                          <i class="fas fa-trash"></i> Delete
-                        </button>
-                      </td>
-                    </tr>
-
-                    <!-- Edit Data Modal -->
-                    <div
-                      class="modal fade"
-                      tabindex="-1"
-                      aria-labelledby="editModalLabel"
-                      aria-hidden="true"
-                      id="editAccountModal<?= $idUser; ?>"
-                    >
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="editModalLabel">
-                              Edit Data Akun
-                            </h5>
                             <button
                               type="button"
-                              class="close"
-                              data-dismiss="modal"
-                              aria-label="Close"
+                              class="btn btn-warning"
+                              data-toggle="modal"
+                              data-target="#editAccountModal<?= $idUser; ?>"
                             >
-                              <span aria-hidden="true">&times;</span>
+                              <i class="fas fa-edit"></i> Edit
                             </button>
-                          </div>
-                          <form method="post">
-                            <div class="modal-body">
-                              <input
-                                type="hidden"
-                                name="idUser"
-                                value="<?= $idUser; ?>"
-                              />
-
-                              <div class="form-group">
-                                <label for="namaUser">Nama Lengkap</label>
-                                <input
-                                  type="text"
-                                  name="namaUser"
-                                  id="namaUser"
-                                  value="<?= $namaLengkap; ?>"
-                                  class="form-control"
-                                  required
-                                />
-                              </div>
-
-                              <div class="form-group">
-                                <label for="usernameUser">Username</label>
-                                <input
-                                  type="text"
-                                  name="usernameUser"
-                                  id="usernameUser"
-                                  value="<?= $username; ?>"
-                                  class="form-control"
-                                  required
-                                />
-                              </div>
-
-                              <div class="form-group">
-                                <label for="emailUser">Email</label>
-                                <input
-                                  type="email"
-                                  name="emailUser"
-                                  id="emailUser"
-                                  value="<?= $email; ?>"
-                                  class="form-control"
-                                  required
-                                />
-                              </div>
-
-                              <div class="form-group">
-                                <label for="passwordUser">Password</label>
-                                <input
-                                  type="password"
-                                  name="passwordUser"
-                                  id="passwordUser"
-                                  value="<?= $password; ?>"
-                                  class="form-control"
-                                  required
-                                />
-                              </div>
-
-                              <div class="form-group">
-                                <label for="alamat">Alamat Lengkap</label>
-                                <input
-                                  type="textarea"
-                                  name="alamat"
-                                  id="alamat"
-                                  value="<?= $alamat; ?>"
-                                  class="form-control"
-                                  required
-                                />
-                              </div>
-
-                              <div class="form-group">
-                                <label for="tipeAkun">Tipe Akun</label>
-                                <select
-                                  class="form-control"
-                                  name="tipeAkun"
-                                  id="tipeAkun"
-                                  value="<?= $tipeAkun; ?>"
-                                  required
-                                >
-                                  <option>Super Admin</option>
-                                  <option>Admin</option>
-                                  <option>User</option>
-                                </select>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="fotoProfil">Pilih Foto</label>
-                                <input
-                                  type="file"
-                                  class="form-control-file"
-                                  name="fotoProfil"
-                                  id="fotoProfil"
-                                />
-                              </div>
-                            </div>
-
-                            <div class="d-sm-flex modal-footer mb-4">
-                              <button
-                                type="button"
-                                class="btn btn-danger"
-                                data-dismiss="modal"
-                              >
-                                <i class="fas fa-trash"></i> Batal
-                              </button>
-                              <button
-                                type=" submit"
-                                class="btn btn-warning"
-                                name="editAccount"
-                              >
-                                <i class="fas fa-edit"></i> Edit
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Delete Data Modal -->
-                    <div
-                      class="modal fade"
-                      tabindex="-1"
-                      aria-labelledby="deleteModalLabel"
-                      aria-hidden="true"
-                      id="deleteAccountModal<?= $idUser; ?>"
-                    >
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="deleteModalLabel">
-                              Hapus Akun ?
-                            </h5>
-                            <button
-                              type="button"
-                              class="close"
-                              data-dismiss="modal"
-                              aria-label="Close"
-                            >
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <form method="post">
-                            <div class="modal-body text-center">
-                              Apakah anda yakin ingin menghapus akun
-                              <b>
-                                <?= $username ?>
-                              </b>
-                              ?
-                            </div>
                             <input
                               type="hidden"
                               name="idHapus"
                               value="<?= $idUser; ?>"
                             />
+                            <button
+                              type="button"
+                              class="btn btn-danger"
+                              data-toggle="modal"
+                              data-target="#deleteAccountModal<?= $idUser; ?>"
+                            >
+                              <i class="fas fa-trash"></i> Delete
+                            </button>
+                          </td>
+                        </tr>
 
-                            <div class="d-sm-flex modal-footer mb-4">
-                              <button
-                                type=" submit"
-                                class="btn btn-danger"
-                                name="deleteAccount"
-                              >
-                                <i class="fas fa-trash"></i> Hapus
-                              </button>
+                        <!-- Edit Data Modal -->
+                        <div
+                          class="modal fade"
+                          tabindex="-1"
+                          aria-labelledby="editModalLabel"
+                          aria-hidden="true"
+                          id="editAccountModal<?= $idUser; ?>"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel">
+                                  Edit Data Akun
+                                </h5>
+                                <button
+                                  type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close"
+                                >
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <form method="post">
+                                <div class="modal-body">
+                                  <input
+                                    type="hidden"
+                                    name="idUser"
+                                    value="<?= $idUser; ?>"
+                                  />
+
+                                  <div class="form-group">
+                                    <label for="namaUser">Nama Lengkap</label>
+                                    <input
+                                      type="text"
+                                      name="namaUser"
+                                      id="namaUser"
+                                      value="<?= $namaLengkap; ?>"
+                                      class="form-control"
+                                      required
+                                    />
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="usernameUser">Username</label>
+                                    <input
+                                      type="text"
+                                      name="usernameUser"
+                                      id="usernameUser"
+                                      value="<?= $username; ?>"
+                                      class="form-control"
+                                      required
+                                    />
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="emailUser">Email</label>
+                                    <input
+                                      type="email"
+                                      name="emailUser"
+                                      id="emailUser"
+                                      value="<?= $email; ?>"
+                                      class="form-control"
+                                      required
+                                    />
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="passwordUser">Password</label>
+                                    <input
+                                      type="password"
+                                      name="passwordUser"
+                                      id="passwordUser"
+                                      value="<?= $password; ?>"
+                                      class="form-control"
+                                      required
+                                    />
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="alamat">Alamat Lengkap</label>
+                                    <input
+                                      type="textarea"
+                                      name="alamat"
+                                      id="alamat"
+                                      value="<?= $alamat; ?>"
+                                      class="form-control"
+                                      required
+                                    />
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="tipeAkun">Tipe Akun</label>
+                                    <select
+                                      class="form-control"
+                                      name="tipeAkun"
+                                      id="tipeAkun"
+                                      value="<?= $tipeAkun; ?>"
+                                      required
+                                    >
+                                      <option>Super Admin</option>
+                                      <option>Admin</option>
+                                      <option>User</option>
+                                    </select>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="fotoProfil">Pilih Foto</label>
+                                    <input
+                                      type="file"
+                                      class="form-control-file"
+                                      name="fotoProfil"
+                                      id="fotoProfil"
+                                    />
+                                  </div>
+                                </div>
+
+                                <div class="d-sm-flex modal-footer mb-4">
+                                  <button
+                                    type="button"
+                                    class="btn btn-danger"
+                                    data-dismiss="modal"
+                                  >
+                                    <i class="fas fa-trash"></i> Batal
+                                  </button>
+                                  <button
+                                    type=" submit"
+                                    class="btn btn-warning"
+                                    name="editAccount"
+                                  >
+                                    <i class="fas fa-edit"></i> Edit
+                                  </button>
+                                </div>
+                              </form>
                             </div>
-                          </form>
+                          </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <?php
+                        <!-- Delete Data Modal -->
+                        <div
+                          class="modal fade"
+                          tabindex="-1"
+                          aria-labelledby="deleteModalLabel"
+                          aria-hidden="true"
+                          id="deleteAccountModal<?= $idUser; ?>"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">
+                                  Hapus Akun ?
+                                </h5>
+                                <button
+                                  type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close"
+                                >
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <form method="post">
+                                <div class="modal-body text-center">
+                                  Apakah anda yakin ingin menghapus akun
+                                  <b>
+                                    <?= $username ?>
+                                  </b>
+                                  ?
+                                </div>
+                                <input
+                                  type="hidden"
+                                  name="idHapus"
+                                  value="<?= $idUser; ?>"
+                                />
+
+                                <div class="d-sm-flex modal-footer mb-4">
+                                  <button
+                                    type=" submit"
+                                    class="btn btn-danger"
+                                    name="deleteAccount"
+                                  >
+                                    <i class="fas fa-trash"></i> Hapus
+                                  </button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+
+                        <?php
 
                     }
                     ?>
